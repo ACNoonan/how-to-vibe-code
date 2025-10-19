@@ -28,7 +28,7 @@ Thank you for your interest in improving the Vibe Coding Course! This guide expl
 Want to run the course site locally?
 
 ```bash
-git clone https://github.com/adamnoonan/vibe-coding-course.git
+git clone https://github.com/ACNoonan/vibe-coding-course.git
 cd vibe-coding-course/site
 pnpm install
 pnpm run dev

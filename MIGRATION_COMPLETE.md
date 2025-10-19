@@ -132,7 +132,7 @@ Visit:
 
 4. **Watch the deployment:**
    - Actions tab will show the build
-   - Site will be live at `https://adamnoonan.github.io/vibe-coding-course`
+   - Site will be live at `https://ACNoonan.github.io/vibe-coding-course`
 
 ### 4. Enable Open Authoring (5 minutes)
 In Tina Cloud dashboard:

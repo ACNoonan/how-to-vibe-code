@@ -8,9 +8,9 @@ export default {
     </>
   ),
   project: {
-    link: 'https://github.com/adamnoonan/vibe-coding-course',
+    link: 'https://github.com/ACNoonan/vibe-coding-course',
   },
-  docsRepositoryBase: 'https://github.com/adamnoonan/vibe-coding-course/tree/main/site',
+  docsRepositoryBase: 'https://github.com/ACNoonan/vibe-coding-course/tree/main/site',
   editLink: {
     component: null
   },

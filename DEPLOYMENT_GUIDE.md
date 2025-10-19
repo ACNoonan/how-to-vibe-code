@@ -13,7 +13,7 @@ The migration to Nextra + Tina CMS is complete and tested locally:
 ### 1. Commit and Push Your Changes
 
 ```bash
-cd /Users/adamnoonan/Documents/vibe-coding-course
+cd /Users/ACNoonan/Documents/vibe-coding-course
 
 # Add all files
 git add .
@@ -66,7 +66,7 @@ After the GitHub Action completes (~2-3 minutes):
 ### Running the Site
 
 ```bash
-cd /Users/adamnoonan/Documents/vibe-coding-course/site
+cd /Users/ACNoonan/Documents/vibe-coding-course/site
 
 # Regular development (no Tina)
 pnpm run dev

@@ -6,7 +6,7 @@ This course teaches the engineering mindset and systematic workflow that will ke
 
 ## 🌐 Live Site
 
-[Visit the course website](https://adamnoonan.github.io/vibe-coding-course) (after deployment)
+[Visit the course website](https://ACNoonan.github.io/vibe-coding-course) (after deployment)
 
 ## 📚 Course Content
 
@@ -37,7 +37,7 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for how to suggest improvements.
 
 ```bash
 # Clone the repository
-git clone https://github.com/adamnoonan/vibe-coding-course.git
+git clone https://github.com/ACNoonan/vibe-coding-course.git
 cd vibe-coding-course/site
 
 # Install dependencies

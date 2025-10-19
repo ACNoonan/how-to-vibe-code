@@ -9,7 +9,7 @@
 
 ## Step 2: Connect Your Repository
 
-1. In Tina Cloud dashboard, select your GitHub repository: `adamnoonan/vibe-coding-course`
+1. In Tina Cloud dashboard, select your GitHub repository: `ACNoonan/vibe-coding-course`
 2. Set the root directory to: `/site`
 3. Click "Continue"
 
@@ -23,8 +23,7 @@
 Create `.env.local` in the site directory:
 
 ```bash
-NEXT_PUBLIC_TINA_CLIENT_ID=your-client-id-here
-NEXT_PUBLIC_TINA_TOKEN=your-token-here
+
 ```
 
 ## Step 5: Test Locally
