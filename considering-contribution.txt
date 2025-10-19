@@ -1,0 +1,7 @@
+The Critical Step: Incorporating Contributions
+There is one important manual step to keep in mind with this workflow. When a student submits a pull request and you merge it:
+The change is made to the Markdown file in GitHub.
+That change will immediately be visible to students on the public Notion page (because it's just displaying the GitHub file).
+However, your original private Notion page is now out of sync. You will need to manually copy the student's changes from GitHub back into your private Notion page.
+If you forget this manual copy step, the next time the automated sync runs, it will overwrite the student's contribution in GitHub with the older content from your private Notion page.
+This isn't necessarily a bad thing—it just makes your private Notion the ultimate authority and forces a deliberate review process for incorporating changes.

@@ -1,0 +1,25 @@
+{
+  "name": "site",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "dev:tina": "tinacms dev -c \"next dev\"",
+    "build": "next build",
+    "build:tina": "tinacms build && next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "15.5.6",
+    "nextra": "3.2.0",
+    "nextra-theme-docs": "3.2.0",
+    "react": "19.2.0",
+    "react-dom": "19.2.0"
+  },
+  "devDependencies": {
+    "@tinacms/cli": "^1.11.0",
+    "@types/node": "24.8.1",
+    "@types/react": "19.2.2",
+    "tinacms": "^2.9.0"
+  }
+}
