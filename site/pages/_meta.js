@@ -1,5 +1,6 @@
 export default {
-  "index": "Introduction",
+  "index": "Home",
+  "introduction": "Introduction",
   "dev-environment-setup": "Dev Environment Setup",
   "cli-services": "CLI Services & Advanced Setup",
   "planning-worksheet": "Planning & Development",

@@ -1,4 +1,4 @@
-# Vibe Coding Course
+# From Idea to App: Building with AI
 
 **Master the art of building software with AI—learn a systematic workflow that works across any tool or platform.**
 

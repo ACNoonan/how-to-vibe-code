@@ -1,0 +1,733 @@
+﻿Vibe Coding Course - Build with AI Flow (Extended Guide)
+Master the art of building software with AI - not just for today's tools, but for tomorrow's. This guide expands on the original 4-hour Vibe Coding Course with standardized structure, a continuous example project, and more granular step-by-step instructions. The content remains casual, direct, and concise, with added context and troubleshooting tips. You'll learn the systematic planning → development → troubleshooting workflow through a single example project we'll build together.
+Introduction
+Vibe Coding Course
+Learn the engineering mindset and repeatable workflow to stay productive with AI-assisted development, no matter how the tools evolve. You'll think like a systems architect while moving at startup speed - planning deliberately, prompting precisely, and iterating intelligently on code.
+What You'll Learn:
+- Strategic Planning: Translate a problem into structured requirements that AI can execute.
+- Prompt Engineering for Developers: Craft system-level prompts that generate production-ready database schemas and UI flows.
+- The Vibe Coding Workflow: A step-by-step process from concept to deployment using AI assistance.
+- Integration Mastery: Connect GitHub, Supabase, Vercel, and Cursor IDE into one coherent dev stack.
+- Intelligent Iteration: Use AI-powered IDE features to refine, debug, and enhance generated code.
+- Tool-Agnostic Thinking: Develop mental models that transfer across platforms as AI tooling evolves.
+Course Structure:
+Follow along with the worksheets and guides to build an MVP (Minimum Viable Product) from scratch. Each section corresponds to a phase of the project:
+1. Dev Environment Setup - Get your tools and accounts ready.
+2. CLI Services & Advanced Setup - Master Git basics, Supabase CLI, Vercel CLI, and an AI IDE (Cursor).
+3. Planning & Development - Plan your project's requirements and use AI to generate the database and application code.
+4. Testing & Troubleshooting - Run your app, debug issues, and iteratively improve with AI assistance.
+5. Self-Hosting 101 - (Advanced) Deploy your app to your own server and manage it in production.
+Who This Is For:
+- Developers curious about AI-assisted development.
+- Product managers who want to prototype faster.
+- Entrepreneurs building their first technical MVP.
+- Anyone who's struggled to turn AI-generated code or ideas into a working software product.
+Prerequisites:
+- Basic understanding of web application concepts (frontend, backend, database).
+- Comfort with using web-based tools and following technical instructions.
+- A laptop with a modern browser and willingness to create some free accounts.
+- No prior AI or coding experience required - we'll build those skills together by working through an example project step by step.
+Example Project: Throughout this course, we'll illustrate each step by building a Team Lunch Coordinator app - a simple tool to help an office organizer plan a team lunch by gathering dietary preferences and suggesting a suitable restaurant. You can follow this example or choose your own project idea when filling in the worksheets.
+Ready to get started? In the next section, we'll set up all the accounts and tools needed for our AI-assisted development workflow.
+Last updated on October 19, 2025
+
+Dev Environment Setup
+Tools You'll Use: GitHub · Git · Node.js · Vercel · Supabase · Cursor IDE
+Goal: Set up accounts and install tools so you can develop, deploy, and collaborate using your GitHub identity. By the end of this section, you'll have all four platforms connected (GitHub, Supabase, Vercel, Cursor) and verify that your development environment is ready.
+✅ SECTION 1 - Create Your Core Account (GitHub)
+All other tools will connect through GitHub, so start here:
+Steps:
+1. Go to GitHub (https://github.com/) and click Sign up.
+2. Create a username, provide your email, and set a password.
+3. Verify your email address (check your inbox and click the GitHub verification link).
+4. (Optional but recommended) Add a profile photo and your full name on GitHub.
+5. Stay signed in - you'll use GitHub to log into other tools.
+✅ SECTION 2 - Install Git (for local version control)
+macOS:
+- Open Terminal.
+- If you don't have Homebrew, install it from brew.sh.
+- Run:
+
+brew install git
+- Verify installation:
+
+git --version
+You should see a git version number if installed successfully.
+Windows:
+- Download the Git installer from the official site: https://git-scm.com/download/win
+- Run the installer and accept the defaults. This will install Git Bash (a Terminal) and other tools.
+- Open Git Bash (or PowerShell).
+- Verify installation:
+
+git --version
+You should see the git version output.
+Set Git Identity (both macOS & Windows):
+After installing Git, set your name and email (this labels your commits):
+
+git config --global user.name "Your Name"
+git config --global user.email "you@example.com"
+Use the same name/email you used for GitHub.
+✅ SECTION 3 - Install Node.js (LTS version)
+Node.js is needed to run JavaScript tools (like the Next.js app we'll generate and various CLIs).
+- Go to the Node.js official site: https://nodejs.org
+- Download the LTS (Long-Term Support) version for your platform (avoid the "Current" version for now).
+- Run the installer and accept defaults. This also installs npm, the Node package manager.
+- Verify installation:
+
+node --version  
+npm --version
+You should see version numbers for both Node and npm. If not, try restarting your terminal or reinstalling Node.
+✅ SECTION 4 - Register & Connect Vercel (Hosting & Deployments)
+Vercel will host our frontend app and handle deployments from GitHub.
+Steps:
+1. Go to Vercel: https://vercel.com/signup
+2. Click Continue with GitHub and authorize Vercel to access your GitHub account. (This allows Vercel to read your repositories and set up deploy hooks.)
+3. Once signed in to Vercel, in your Vercel dashboard click New Project → Import Git Repository.
+4. If prompted, install the Vercel GitHub App and select the repositories you want Vercel to access. Choose the repository for your project (you might need to create a new GitHub repo for your project if you haven't already - see CLI Part 1 for how to initialize a repo).
+5. Once your repo is connected, click Deploy. Vercel will build and deploy the project. (If your repo is empty or just a README, Vercel might show a quick start project or an error - that's okay. The main goal here is to ensure Vercel is linked to your GitHub. We will deploy actual code later in the development phase.)
+6. After deployment, note the generated project URL (something like https://your-project-name.vercel.app). Vercel automatically provides a live URL for each deployed project.
+If you don't have any project repository ready at this point, you can skip deploying for now. The important part is that your Vercel account is set up and linked to GitHub. We'll deploy the app once we have some code.
+Optional: Vercel CLI Setup (advanced, you can also deploy via command line):
+- Install the Vercel CLI globally:
+
+npm install -g vercel
+- Log in via CLI:
+
+vercel login
+This will open a browser for you to authenticate. Follow the prompt and authorize.
+- Now you can use vercel commands in your terminal (e.g., vercel to deploy, vercel --prod for production deploy, etc.). We'll mostly rely on the GitHub integration for deployment, but the CLI is handy for local testing and manual deploys.
+✅ SECTION 5 - Register & Connect Supabase (Database & Auth)
+Supabase will serve as our cloud database (PostgreSQL) and provide authentication if needed.
+Steps:
+1. Go to Supabase: https://supabase.com
+2. Click Start your project or Sign In → Continue with GitHub (Supabase also supports GitHub login).
+3. Authorize Supabase to use your GitHub account (this is mainly for convenience and linking projects, though not mandatory for basic usage).
+4. In the Supabase dashboard, click New Project. Enter a project Name (e.g., "team-lunch-app"), choose a strong Database Password (store this somewhere safe, though we won't use it directly in this course), and select the Free Tier plan. Choose a Region near you or your expected users.
+5. Click Create new project and wait for a couple of minutes while Supabase sets up your database instance.
+6. Once ready, you'll be dropped into the project dashboard. You now have a hosted database! We'll integrate it with our app soon.
+Optional: Supabase CLI (for advanced local dev or migration management)
+You can install the Supabase CLI, which allows you to manage the database and run it locally if desired:
+- macOS:
+
+brew install supabase/tap/supabase
+- Windows:
+
+npm install -g supabase
+- Verify CLI installation (both):
+
+supabase --version
+If you plan to run Supabase locally on your machine, you'll also need Docker Desktop (https://www.docker.com/products/docker-desktop)[1]. This goes beyond the basics; using the cloud instance is sufficient for this course.
+✅ SECTION 6 - Install Cursor IDE (AI-Powered Code Editor)
+Cursor is an AI-integrated IDE that will help us generate and refine code.
+Steps:
+1. Go to Cursor: https://cursor.com
+2. Download the Cursor installer for your OS (Mac .dmg or Windows .exe).
+3. Install and open Cursor.
+4. Sign in to Cursor with GitHub (it will prompt you). Approve any GitHub access requests so Cursor can integrate with your repositories.
+5. In Cursor, create or open a new project folder (we'll create our project soon; you can just open an empty folder or your repository folder if you created one).
+6. Explore Cursor's interface: it has a file explorer, an editor, and an AI chat panel.
+Cursor highlights: You can chat with an AI assistant inside the editor (press Cmd/Ctrl + K for inline chat or Cmd/Ctrl + L to open the chat panel). It can suggest code, fix errors, and even write entire files based on prompts. We'll use these features heavily in development.
+✅ SECTION 7 - Verify Everything Works
+Before moving on, double-check that all tools are correctly set up:
+- Open a Terminal (or Git Bash on Windows) and run these commands one by one, ensuring each prints a version number without errors:
+
+git --version  
+node --version  
+npm --version  
+vercel --version   # (if you installed Vercel CLI)  
+supabase --version # (if you installed Supabase CLI)
+- Open Cursor and confirm you're logged in (your GitHub-connected account name should appear).
+- Log into the Vercel dashboard and Supabase dashboard in your browser to make sure your accounts are active (they should show your GitHub-linked profile and any project you created).
+If any of the above doesn't work (for example, a command isn't found or a tool won't log in), revisit the previous steps or consult the tool's documentation for troubleshooting. Once everything checks out, you're ready to build! ✅
+
+CLI Services & Advanced Dev Environment Setup
+Now that the environment is ready, let's dig into some essential developer workflows and command-line tools. We'll cover: Git version control basics, Supabase CLI for database migrations, Vercel CLI for deployments, and tips for using Cursor IDE effectively. Mastering these will make you faster and more confident as you build. (If you're already comfortable with Git and basic CLI usage, feel free to skim Part 1 and 2.)
+📚 Part 1 - Git Basics for Beginners
+Git helps you track changes in code, collaborate with others, and sync your work between your computer and GitHub. We'll use Git throughout development to save our progress and deploy via GitHub. Here's a crash course on the core Git workflow and common commands:
+Core Git Workflow (The Essential Four):
+1. Pull - Download the latest changes from GitHub to your local project.
+
+git pull
+Use this at the start of a work session to ensure you have the newest code from the remote repository. If you're the only one working on the repo, this just confirms you're up to date.
+1. Add - Stage files that you want to include in the next commit (like adding items to a shopping cart).
+
+  # Add a specific file
+git add filename.js
+
+# Add all changed files
+git add .
+  This prepares your changes for committing. You can check what's staged with git status.
+2. Commit - Save your staged changes to the repository history with a descriptive message.
+
+  git commit -m "Add user login feature"
+  Think of commits as checkpoints or save points in a game - each commit captures a snapshot of your project. Write messages that make it clear what you did in that change.
+3. Push - Upload your commits to GitHub (the remote repository).
+
+  git push
+  This sends your local commits to the remote repo on GitHub, making them available to others (and triggering a deploy on Vercel if configured).
+Using these four commands in sequence is the bread-and-butter of using Git.
+Complete Example Workflow:
+Here's how a typical work session might look using the above commands:
+
+# 1. Start your work session by getting the latest code
+git pull
+
+# 2. (Make changes to your files: edit code, add new files, etc.)
+
+# 3. See what changed
+git status
+
+# 4. Stage all your changes for commit
+git add .
+
+# 5. Commit with a message describing the changes
+git commit -m "Fix navigation bug and add footer"
+
+# 6. Push the commit to GitHub
+git push
+After step 6, if your GitHub repo is connected to Vercel, Vercel will detect the push and redeploy your app. 🎉
+Checking Your Status:
+It's good practice to frequently check what Git is tracking or not tracking:
+- git status - See which files are changed, staged, or untracked.
+- git diff - See the actual changes you've made (line-by-line differences) that haven't been staged or committed yet.
+- git log --oneline - See a concise history of commits (useful to confirm your commit went through or to recall commit messages).
+First-Time Repository Setup:
+If you are starting a brand new project repository (which we likely will for our example app), you'll need to initialize Git and connect to GitHub:
+
+# In your project folder (replace with your folder name)
+git init                   # Initialize a new local git repository
+git add .                  # Stage all files (e.g., your README or initial code)
+git commit -m "Initial commit"   # Commit the initial set of files
+
+# Connect to GitHub (replace URL with your GitHub repo link)
+git remote add origin https://github.com/<yourusername>/<your-repo>.git
+
+# Push to the main branch on GitHub
+git branch -M main               # Ensure the main branch is named 'main'
+git push -u origin main
+After this, your local repo is linked to the GitHub repo ("origin"), and your code is uploaded. You only need to set the remote and branch tracking once - subsequent pushes can just use git push.
+Tip: If you created a repo on GitHub first (with a README, for example), you can also clone it via git clone https://github.com/<user>/<repo>.git instead of init + remote add. Cloning copies the repo and sets up the remote automatically.
+Common Issues & Fixes:
+- Merge conflicts? This can happen on git pull if both your local and the remote have changes on the same lines. Git will pause and let you resolve the conflict manually.
+Fix: Open the conflicted files (Git will mark the conflicting sections <<<< <<<). Decide which changes to keep (or merge them), then:
+
+git add .  
+git commit -m "Resolve merge conflicts"  
+git push
+To avoid conflicts, commit and push frequently, especially if working with others.
+* Pushed the wrong thing or wrote a bad commit message?
+* To change the most recent commit's message (if you haven't pushed it yet):
+
+  git commit --amend -m "New correct message"
+  This updates the last commit. (If you already pushed, be cautious amending - it's doable but can confuse the remote history.)
+* To undo changes in your working directory before committing:
+
+  git restore filename.js   # Discard changes in this file  
+git restore .             # Discard all local changes (careful: this cannot be undone!)
+  This restores files to the last committed state.
+For a more thorough beginner's guide, check out GitHub's Git Guide[2][3] or their handy Git cheat sheet[4] for quick reference. Git is extremely powerful, and you'll get the hang of it with practice.
+🗄️ Part 2 - Supabase CLI Deep Dive (Database Migrations & Local Dev)
+The Supabase CLI is a tool that helps manage your database schema and local Supabase environment from the command line[5]. While you can use the Supabase web UI for many things, the CLI is great for version-controlling your database structure (via migrations) and developing offline.
+Key concepts: Migrations are like Git for your database - they are SQL files that describe changes (creating tables, adding columns, etc.) which can be applied to your database to upgrade it to a new schema. You'll generate migration files, then "push" them to apply on the database, ensuring the database structure stays in sync with your app's code.
+Initial Setup & Login:
+After installing the Supabase CLI (see Dev Setup Section 5), log in and link your project:
+
+supabase login  
+supabase link --project-ref <your-project-ref>
+- supabase login will open a browser asking you to log into Supabase and authorize the CLI.
+- supabase link connects your local folder to a specific Supabase project. You need your project's reference ID for this. Find it in your Supabase dashboard: Project Settings → General → Reference ID (an alphanumeric string). Provide that when prompted, or include it in the command as shown.
+Once linked, any Supabase CLI commands you run in this directory will target that project by default.
+Database Migrations:
+A migration is a SQL script that modifies the database (like adding a table or column). Migrations let you apply changes systematically and track them in Git. Think of them as a commit history for your database schema. Supabase CLI allows you to create and run migrations easily.
+* Creating a Migration:
+Use the CLI to scaffold a new migration file:
+
+  supabase migration new <migration_name>
+  Example:
+
+  supabase migration new create_users_table
+  This creates a timestamped SQL file in the supabase/migrations folder, e.g. supabase/migrations/20251019123000_create_users_table.sql. Open this file in your editor - it will be empty or have a template header. You will write SQL here to describe the changes. For example:
+
+  -- Example migration: create a users table
+create table users (
+  id uuid primary key default uuid_generate_v4(),
+  email text unique not null,
+  created_at timestamp with time zone default now()
+);
+  You can create multiple tables or any other schema changes in one migration file, but it's common to do one logical set of changes per file.
+* Pushing Migrations to Your Database:
+Once you've written the SQL in a new migration file, apply it to the remote database:
+
+  supabase db push
+  This command looks at your local supabase/migrations folder and runs any new migrations that haven't been applied yet on your Supabase project. The changes in the SQL file will be executed on the cloud database (or local if you're using local dev). You should see output indicating success or any SQL errors.
+* Pulling the Schema from Remote:
+If changes were made directly in the Supabase dashboard or by a teammate, you can pull those into a migration file:
+
+  supabase db pull
+  This generates one or more migration files representing any differences between your local schema files and the remote database. It's a way to reverse-engineer what's on the cloud into your version control.
+Migration Workflow Example:
+Let's say we want to add a new table profiles to the database:
+1. Create a migration file:
+
+supabase migration new add_profiles_table
+A file like 20251019124500_add_profiles_table.sql is created.
+2. Edit the migration file: Define the profiles table in SQL, e.g.:
+
+create table profiles (
+  id uuid primary key default uuid_generate_v4(),
+  user_id uuid references users(id) on delete cascade,
+  full_name text,
+  created_at timestamp with time zone default now()
+);
+(This assumes a users table exists and we're linking profiles to users.)
+3. Apply to remote database:
+
+supabase db push
+The new table is now created in Supabase.
+4. Commit your migration:
+
+git add supabase/migrations/20251019124500_add_profiles_table.sql  
+git commit -m "Add profiles table migration"  
+git push
+This way, your migration script is in source control. Team members who pull the latest code can run supabase db push to apply it on their end (or on their local dev DB).
+Understanding the Migrations Folder:
+Your project will have a structure like:
+
+your-project/
+└── supabase/
+    ├── migrations/
+    │   ├── 20251019120000_initial_schema.sql
+    │   ├── 20251019123000_create_users_table.sql
+    │   └── 20251019124500_add_profiles_table.sql
+    └── config.toml
+- Each file is timestamped; migrations run in chronological order.
+- Never edit a migration that's been pushed/applied - if you need to change something, create a new migration. Old migrations represent history.
+- Migrations should be checked into Git (they are your database's change history).
+- Think of migration files as one-way transformations - they usually only describe how to upgrade the schema (not how to downgrade, unless you write that in SQL manually). If you need to undo, you'd create a "drop" or "alter" migration as a new file.
+Viewing Your Database Schema:
+When your database grows, you may want to inspect what's in it:
+- Supabase Studio (Web Dashboard): Easiest way - go to your project's Table Editor or Schema section to visually see tables, columns, and data.
+- CLI Inspect (with Docker):
+
+supabase db diff
+This compares your local schema files with the remote database and shows differences (requires Docker running).
+- Generate Schema Dump:
+
+supabase db dump --schema public
+This outputs the SQL commands to create your current schema (you can add --table your_table to see a specific table). It's a read-only way to see structure[6][7].
+- Interactive PSQL Shell:
+
+supabase db shell
+This opens a psql (Postgres shell) connected to your database. There you can run commands like \dt to list tables or \d <table> to describe a table, and standard SQL SELECT queries to view data. Type \q to quit.
+(Note: Supabase's CLI shell requires certain credentials; if it errors, use the "SQL Editor" in the web UI as an alternative.)
+Local Development with Supabase (Optional Advanced):
+One powerful feature of Supabase CLI is running the entire Supabase stack locally via Docker. This is optional and not required for our main flow (we can use the cloud DB), but it's useful for working offline or testing changes before pushing to the cloud. Steps:
+- Ensure Docker is installed and running.
+- In your project folder, run supabase start. This will pull Docker images and set up: a local Postgres database, the Supabase API server, Auth server, Storage, and a local Studio (usually at http://localhost:54323).
+- Now any Supabase calls your app makes to localhost:54321 (the default local endpoint) will hit the local instance.
+- Run supabase db reset to apply all migrations to the local DB (this also wipes and re-seeds if you have seed files).
+- When done, supabase stop to shut down the containers.
+You can develop against the local DB and then push migrations to cloud when ready. Keep in mind the free tier resource limits (500MB DB, etc.) are not an issue locally, but you'll still have them in cloud.
+Useful Supabase CLI Commands (Summary):
+- supabase login - Authenticate the CLI with your Supabase account.
+- supabase link - Link local project to a Supabase project (store ref in supabase/config.toml).
+- supabase migration new <name> - Create a new migration file.
+- supabase db push - Apply new migrations to the remote database (deploy changes).
+- supabase db pull - Download the remote schema changes into new migration files (capture changes made outside of migrations).
+- supabase db diff - Show differences between local schema files and remote DB schema (diagnostic).
+- supabase db reset - Reset the local dev database and re-run all migrations (useful if running supabase start).
+- supabase status - Check status of local Supabase services (if running).
+(See the official Supabase CLI docs for more: it can also manage secrets, deploy Edge Functions, handle auth with SSO, and more[8][6].)
+⚡ Part 3 - Vercel CLI Essentials
+While Vercel's web dashboard and git integration handle most deployment needs, the Vercel CLI is a handy tool for local testing and advanced control. It lets you deploy from the terminal, inspect deployments, and more. The CLI is optional but recommended for a pro workflow[9].
+Installation & Login:
+We covered this in Dev Setup Section 4 (npm install -g vercel). If you haven't:
+
+npm install -g vercel
+Then log in:
+
+vercel login
+Follow the browser authentication. After that, vercel commands will use your account.
+Deploying Your Project via CLI:
+- First-time setup: In your project folder, run vercel. This will prompt you to link or create a project. If your folder is already a Git repo linked to Vercel, it might detect settings. Otherwise:
+- It may ask "Set up and deploy - yes/no?" Choose yes.
+- It may ask which scope (select your personal account or org).
+- For "Link to existing project?" you can select the one you imported earlier, or say no to create a new Vercel project. If you select existing, it links this local directory to that Vercel project.
+- It might ask for a project name (choose one or accept default).
+- It might ask which GitHub repo to link (if not already linked via dashboard).
+- Once configured, it will deploy a preview build.
+- A vercel.json file may be created to store some config.
+* Subsequent deploys: After initial linking, just run vercel to deploy a preview (staging) version, or vercel --prod to deploy to production (the main URL). This is an alternative to pushing to GitHub - it directly uploads from your local machine.
+Useful Vercel CLI Commands:
+- vercel dev - Run your project locally with Vercel's dev server (an alternative to npm run dev for Next.js, useful if your project has functions or special Vercel config - often not needed for basic Next.js).
+- vercel logs - View logs for the deployment (use flags to specify production or a specific deployment).
+- vercel ls - List your Vercel projects and aliases.
+- vercel inspect - Get details about the current deployment.
+- vercel env - Manage environment variables for your Vercel project via CLI (list, add, remove).
+- vercel pull - Download your project's settings (including environment variables) to your local .env file. For example, if you set env vars in Vercel's dashboard, vercel pull can fetch them and create a .env.local file for you.
+Basically, anything you can do in the Vercel dashboard, you can script or do in CLI. The CLI allows you to create and manage projects without using the web UI if desired[10]. For most of this course, the web UI + git deploy is enough, but keep the CLI in mind for debugging and automation. (See Vercel's official CLI reference for more: "The Vercel CLI allows you to interact with Vercel services from your command line."[9])
+💻 Part 4 - Cursor IDE Tips
+Cursor doesn't use a CLI, but understanding how to operate in this AI-focused IDE will supercharge your development. Here are some tips to integrate it into your workflow:
+Opening Projects:
+- To open your current folder in Cursor from a normal terminal, you can use: cursor . (if the cursor command is available in your PATH). This will launch Cursor with the current directory.
+- From within Cursor, you can use File → Open Folder to open a project, or the Command Palette (Cmd/Ctrl + Shift + P) and search for "Open Folder".
+Useful Cursor Features:
+- AI Chat & Inline Prompts:
+- Press Cmd/Ctrl + K to bring up an inline chat box while focused in a code file. You can type a request (e.g., "Explain this code" or "Write a function to do X") and the assistant will insert the response right in the editor or as a side popup.
+- Press Cmd/Ctrl + L to open the full AI Chat panel (usually on the right side). This is useful for longer conversations or when you want to refer to multiple files. You can copy multi-line prompt templates here (like the ones we'll create in the next section) and get large code outputs.
+- Command Palette: (Cmd/Ctrl + Shift + P) - This is a quick way to find commands, like "Format Document" or "Toggle Chat Panel" or "Open Terminal". It's similar to VSCode's palette.
+- Integrated Terminal: Press **Cmd/Ctrl + ** (backtick) to toggle the terminal at the bottom. This is a full shell in your project directory. You can rungitcommands,npm run dev,supabaseCLI, etc., without leaving Cursor. - **Code Generation & Edit:** Cursor's AI can write code for you. For example, you can create a new file, hit Cmd+K, and type "Fill this with a React component that does X". Or highlight code and ask the AI to refactor or add comments. - **Project Rules:** Cursor allows adding "project context" (like documentation or instructions) that the AI will consider. For instance, you might keep your prompt templates or data model description in a.md` file and mark it as context. (This is advanced usage; by default we'll just paste what's needed into chat.)
+Recommended Daily Workflow with Cursor & CLI:
+1. Pull latest code: In the Cursor terminal (or external terminal), start each day with git pull to sync changes[11].
+2. Edit/Build with AI: Use the planning from the next section to prompt Cursor's AI to generate code. Work on one feature or component at a time[11] - for example, prompt to create the database schema, then the UI page, etc. Iterate in small chunks: start simple, and add complexity one step at a time. This makes it easier to pinpoint errors[11].
+3. Run Local Dev Server: Use npm run dev (or vercel dev) to run your Next.js app locally. You can actually run this inside Cursor's terminal to see logs and use the browser to check UI. Keep it running as you develop, so you get live reload.
+4. Test Features as You Go: After generating a component or API route, switch to the browser to see if it works. Did the UI appear? Does clicking a button do what's expected? If not, use Cursor to identify issues: you can copy any error messages into the AI chat and ask for help. E.g., "I got this error in the console or terminal, what might be wrong?" The AI can often suggest a fix. You can even paste code and ask "Why isn't this working?"[12] - it might catch things like missing state updates or typos.
+5. Stage & Commit: Once a feature is working (or at a stable point), in the terminal do git add . and git commit -m "Implement X"[13]. Committing often, even to your local repo, is good practice - it provides recovery points if something goes wrong. Remember, commit early, commit often[14].
+6. Push and Deploy: If you're ready to share or test on a staging URL, git push to GitHub. Since Vercel is connected, this will trigger an auto-deployment (usually to a preview URL if working on a branch, or production if pushing to main). Alternatively, run vercel --prod to deploy instantly from your machine.
+7. Review & Iterate: Check the deployed app. If something is broken in production that wasn't locally, check environment variables and logs (maybe you forgot to set an env var on Vercel, etc.). Then iterate on fixes.
+Throughout development, keep notes of what works and what doesn't. AI coding is fast but not perfect - expect to debug and refine code. If a generated code block isn't what you wanted, try rephrasing the prompt or breaking the task into smaller pieces[11]. For example, instead of "generate my entire frontend", ask for one page at a time, or even one component at a time (header, form, table, etc.), confirming each part. Use Git to checkpoint, and don't be afraid to slow down for complex features - you can always guide the AI with more specific instructions if it made a mistake (we'll see more on this in Troubleshooting).
+Additional Resources (CLI & Tools):
+- Git: GitHub's Git Guide - official guide covering basic to advanced Git usage[2]. Great for filling gaps in your understanding.
+- Supabase CLI: Supabase CLI Docs - the official reference for all CLI commands and usage[15][16].
+- Vercel CLI: Vercel CLI Reference - official docs on using Vercel via the terminal (deployments, logs, env, etc.)[9].
+- SQL Basics: PostgreSQL Tutorial - if you need a primer on SQL and relational databases, check out the PostgreSQL tutorial on the official site[17] (or a beginner-friendly site like W3Schools[18]). Understanding how tables, rows, and queries work will help in designing your schema and debugging data issues.
+
+Planning & Development
+Planning & Development Worksheet
+Now we get to the fun part - planning our app and then building it with AI assistance. We'll use a structured worksheet to go from idea to implementation. Fill in each section for your project (we'll use our Team Lunch Coordinator example in brackets to guide you). This plan will then translate into prompts for code generation.
+PLANNING PHASE
+Take a moment to clearly define the problem you're solving, who it's for, and how the app will work. Clarity here will lead to better AI-generated results.
+Step 1: Problem & Persona
+- WHO HAS THE PROBLEM?
+Be specific about the person or role, not just "users". Who will benefit from your app?
+Your Answer: (Fill in for your project)
+Example: "Office managers who need to coordinate team lunch outings and accommodate everyone's dietary restrictions."
+* WHAT'S THE PROBLEM?
+One sentence describing the pain point or problem they experience.
+Your Answer:
+Example: "They waste a lot of time emailing back-and-forth to collect meal preferences and searching for a restaurant that fits everyone's needs."
+* WHAT'S THE DESIRED OUTCOME?
+What does success look like for this person? If the problem is solved, how will their life/work be better? One sentence.
+Your Answer:
+Example: "Easily gather all team members' dietary requirements and automatically get a suggestion of restaurants that can accommodate the whole team."
+By clearly identifying the who, what, and outcome, we ensure our project is focused. Keep these answers in mind - they'll guide the features we build.
+Step 2: MVP User Journey
+MVP (Minimum Viable Product) means the simplest version of the product that delivers the desired outcome. Describe the user's experience in a series of steps (5-8 steps). Focus on what the user does/sees, not technical details. This is essentially the UX flow. Each step should be an interaction or a result.
+Your MVP User Journey: (Fill in the steps for your app)
+1. 2. 3. 4. 5. 6. 7. 8.
+Example - Team Lunch Coordinator:
+1. The organizer creates a new event (e.g., "Friday Team Lunch") using the app and sets the date/time.
+2. The organizer enters a list of team members' emails to invite.
+3. Each team member receives a link and opens a page to RSVP their dietary preferences (e.g., vegetarian, vegan, allergies, etc.).
+4. The organizer can view a dashboard listing all responses and dietary needs once people submit the form.
+5. The app uses AI (or some logic) to suggest 3 restaurant options that cater to everyone's restrictions. These suggestions are displayed on the organizer's dashboard.
+6. The organizer picks one of the suggested restaurants and clicks "Finalize Lunch".
+7. The app sends out a notification (or displays a confirmation page) to all team members with the chosen restaurant and details.
+8. (Optional nice-to-have) Team members see the final plan and have an option to add it to their calendar.
+This user journey will help determine what screens/pages we need and what data is involved.
+Step 3: Data Requirements
+Now identify the key nouns in your user journey - those are likely your data entities (tables or collections). For each entity, list its core attributes and any relationships between entities. Essentially, define your data model.
+Your Data Requirements: (List out for your project)
+* ENTITY: <Name of Entity>
+Attributes: (list important fields and their types if known)
+Why needed: (which journey step or feature does this support?)
+Relationships: (how it links to other entities, if applicable)
+(Repeat for each entity.)
+Example - Team Lunch Coordinator:
+- ENTITY: events
+- Attributes: id (uuid, primary key), organizer_name, organizer_email, event_name, event_date, event_time, status (e.g., planning/finalized), selected_restaurant_id (foreign key to restaurant_suggestions, nullable until finalized), created_at, updated_at.
+- Why needed: Stores core event info created by the organizer (Step 1). We need to know when the lunch is, who created it, and if it's finalized.
+- Relationships: One event has many invitations (invitations table will have event_id), and one event has many restaurant_suggestions. It may also have one final chosen restaurant_suggestion (hence the selected_restaurant_id).
+* ENTITY: invitations
+* Attributes: id (uuid), event_id (fk to events), invitee_email, invitee_name (optional), response_status (pending/accepted/declined), responded_at, created_at.
+* Why needed: Tracks who's invited and their RSVP status (Steps 2-4). We need this so the organizer can see who responded and who hasn't.
+* Relationships: Belongs to an event (many invitations per event). Each invitation might link to a dietary_preference entry.
+* ENTITY: dietary_preferences
+* Attributes: id (uuid), invitation_id (fk to invitations), is_vegetarian (bool), is_vegan (bool), is_gluten_free (bool), allergies (text), other_notes (text), created_at.
+* Why needed: Stores each invitee's dietary restrictions/preferences (Step 3). This is separate so we can easily extend it (and to not clutter the invitations table with many columns).
+* Relationships: Belongs to an invitation (one-to-one, effectively - each invitation has one set of preferences linked).
+* ENTITY: restaurant_suggestions
+* Attributes: id (uuid), event_id (fk to events), name (text), cuisine_type (text), address (text), price_range (text or enum), meets_all_restrictions (boolean), notes (text for why it fits), suggested_at (timestamp).
+* Why needed: Stores the AI-generated restaurant options for the event (Step 5). Each suggestion is a potential restaurant that can accommodate everyone.
+* Relationships: Belongs to an event (many suggestions per event). The chosen suggestion is linked back to the event via selected_restaurant_id.
+(These entities cover the core data. We might also consider an users table if we had user accounts, but in an MVP we might skip full auth and just use emails. We also didn't model notifications, assuming those are handled externally or not in MVP.)
+With planning done, we have a blueprint for what to build: we know the pages we need (based on the journey) and the data tables backing those pages. Now it's time to hand off some of this heavy lifting to our AI pair programmer! 🚀
+
+DEVELOPMENT PHASE (with AI assistance)
+We will now use AI tools (Cursor IDE's assistant or Vercel's V0 tool) to generate the foundational code for our application. This will happen in a few steps:
+Step 1: Database Schema Generation
+🎯 PURPOSE: Generate the SQL commands to create all the tables and relationships we outlined in our data model, ready to execute in Supabase. This ensures our database is set up with the correct schema.
+We'll craft a prompt for the AI to act as a "senior database architect" and produce a complete PostgreSQL schema. Once we get the output, we will run it in Supabase.
+📋 PROMPT TEMPLATE (Database Schema)
+Copy this template and fill in the details from your Planning Steps 1-3 above (problem, user journey, data requirements). Then feed it to the AI (e.g., in Cursor's chat).
+You are a senior database architect specializing in PostgreSQL and Supabase.
+
+CONTEXT:
+I'm building an MVP for: <PASTE YOUR PROBLEM STATEMENT FROM STEP 1 (who & problem)>
+The core user journey is:
+<PASTE YOUR MVP USER JOURNEY FROM STEP 2 (the numbered list of steps)>
+DATA REQUIREMENTS:
+<PASTE YOUR DATA REQUIREMENTS FROM STEP 3 (each entity with attributes and relationships)>
+
+TASK:
+Generate a complete SQL schema for Supabase (PostgreSQL) that:
+1. Creates all necessary tables with appropriate data types.
+2. Includes primary keys (use UUIDs for primary keys of main tables).
+3. Includes foreign keys with proper constraints:
+   - Use `ON DELETE CASCADE` where child records should be deleted with parent (e.g., invitations get deleted if their event is deleted).
+   - Use `ON DELETE SET NULL` if we want to keep child records but just nullify the reference when parent is deleted (if applicable).
+4. Includes indexes on columns that will be frequently queried or used in lookups (e.g., foreign key columns, or any search fields).
+5. Includes `created_at` and `updated_at` timestamps on each table (use `timestamp with time zone`, default to NOW(), and set up triggers for auto updating `updated_at` on update).
+6. Enables Row Level Security (RLS) on each table (but do not create any policies - just enable RLS so we can add policies later).
+7. Follows PostgreSQL and Supabase best practices.
+
+SPECIFIC REQUIREMENTS:
+- (If you have any specific needs, list them. For example:
+   - Use DATE for any date fields and TIME for time fields.
+   - Use TEXT or VARCHAR for names and emails (VARCHAR(255) is fine).
+   - Add CHECK constraints or ENUM types for any status fields (e.g., status can only be 'planning', 'finalized', 'cancelled').
+   - The app will be low-traffic (<100 records per month), so optimizing for simplicity over scale is fine.)
+
+CONSTRAINTS:
+- This is a free tier Supabase project, so keep the schema lean and efficient (fewer than 500MB data, simple indexes).
+- No special extensions beyond what's enabled by default.
+- Assume we will use Supabase Auth later (so you can create a `auth.users` reference if needed, but not required for MVP).
+
+OUTPUT FORMAT:
+Provide a single SQL script that can be run in the Supabase SQL Editor.
+- Include `CREATE TABLE` statements for each table.
+- Include all `ALTER TABLE ... ADD CONSTRAINT` statements for keys and constraints.
+- Include comments (`-- ...`) explaining each table and important constraints.
+- Include the function and trigger for updating `updated_at` timestamps (this can be a generic trigger used for all tables).
+Using the prompt: Copy the filled prompt into Cursor's chat (or your AI tool). You may need to scroll since it's long. Ask it to only output the SQL script (sometimes you can add: "Output only the SQL, no additional explanation" to be sure). The AI should generate SQL for all your tables.
+Review the output carefully. Check that:
+- All tables and columns you listed are present (and spelled correctly).
+- Data types make sense (e.g., text vs varchar, timestamp with time zone for dates).
+- Primary keys are set as uuid DEFAULT uuid_generate_v4() if using UUID.
+- Foreign keys reference the right tables and have ON DELETE rules as you expect.
+- created_at/updated_at exist on each table.
+- RLS is enabled (typically the SQL for that is ALTER TABLE ... ENABLE ROW LEVEL SECURITY;).
+- The trigger function for updated_at is included (commonly, courses will add a function like create function public.trigger_set_updated_at() ... and a trigger on each table to auto-update the timestamp).
+- Indexes: Are there indexes on any foreign key columns or columns you might filter by? If not, consider which queries you'll run (maybe indexes on email fields or event_id fields). You can tweak the SQL to add those (CREATE INDEX ... ON table(column);).
+If anything is missing or off, you can either edit the SQL yourself or ask the AI to fix it (e.g., "Add a users table" or "Change the data type of X to integer", or "Add an index on invitations(event_id)"). Remember, you can iterate: it's common that the first AI output might need a few adjustments.
+Once satisfied, it's time to execute the SQL to create your schema:
+* Go to your Supabase dashboard, open the SQL Editor, create a New Query, and paste the SQL script. Click Run[19]. Supabase will execute each statement. Watch for any errors in the output. If it says "relation already exists" or similar, you might have run it before; you may need to adjust (or reset the DB). Ideally it runs cleanly and all tables are created.
+* You can verify by going to Table Editor in Supabase and seeing your tables with their columns, or run supabase db diff or supabase db dump to see the schema (as shown earlier) to double-check it matches what you want.
+Congratulations - you've set up your database schema! [20][21] Your backend (database) is ready to store and retrieve data for your app.
+(Behind the scenes, these SQL commands are essentially what Supabase CLI would put in a migration file. If you prefer, you could paste this SQL into a file under supabase/migrations and do supabase db push as well. But running in the SQL editor is quick for an initial schema. Just remember to save the SQL somewhere, e.g., commit the migration file, so you have a record.)
+Step 2: User Interface Generation
+🎯 PURPOSE: Generate the frontend application code (Next.js) that implements the user journey. This will include pages, components, and possibly some basic backend logic (API routes or server actions) needed for the app to function end-to-end. We'll provide the AI with the context of what we're building, the user journey steps, and the available data (database schema), and ask it to produce the code.
+This is a big task! The AI will likely output multiple files worth of code. Cursor IDE can handle multi-file outputs, especially if you ask it to structure the answer by filenames. Alternatively, you can ask for one part at a time. Here we'll try to get a full Next.js project scaffold.
+📋 PROMPT TEMPLATE (User Interface / App Code)
+Fill in details for your app and use this prompt in Cursor or V0.dev. It's long, but guides the AI to create the project.
+You are an expert frontend engineer specializing in Next.js (React, TypeScript, Tailwind CSS).
+
+CONTEXT:
+I'm building an MVP for: <PASTE YOUR PROBLEM STATEMENT (the one-sentence from Step 1)>
+The target user is: <PASTE WHO HAS THE PROBLEM (persona)>
+MVP USER JOURNEY:
+<PASTE YOUR USER JOURNEY (numbered list from Step 2)>
+
+DATA AVAILABLE:
+I have a Supabase PostgreSQL database with the following tables and columns:
+<LIST YOUR TABLE NAMES AND KEY COLUMNS> 
+Example format:
+- events (id, organizer_name, organizer_email, event_name, event_date, status, selected_restaurant_id, created_at, updated_at)
+- invitations (id, event_id, invitee_email, response_status, responded_at, created_at, updated_at)
+- dietary_preferences (id, invitation_id, is_vegetarian, is_vegan, allergies, created_at)
+- restaurant_suggestions (id, event_id, name, cuisine_type, meets_all_restrictions, suggested_at)
+
+TASK:
+Generate a complete Next.js application (frontend + basic backend) that implements the above user journey and features. The code should be production-ready and follow best practices.
+
+REQUIREMENTS:
+**UI/UX:**
+- Modern, clean design using Tailwind CSS for styling.
+- Mobile-first responsive design (the app should work well on mobile and desktop).
+- Clear visual hierarchy and intuitive navigation for the steps described.
+- Provide loading states when waiting for data (e.g., when suggestions are being fetched/generated).
+- Provide error states with user-friendly messages (e.g., "Failed to load data, please try again").
+- Use a design style that is <choose one: "minimalist and professional" or "fun and playful" or "simple and clean"> appropriate for the target users.
+
+**Technical:**
+- Use **Next.js 14+** with the **App Router** (using `/app` directory and React Server Components where suitable).
+- Use **TypeScript** for type safety.
+- Use the Supabase JavaScript client (`@supabase/supabase-js`) to interact with the database.
+- Implement any necessary server-side functions (using Next.js API routes or server actions) to securely interact with Supabase (e.g., for inserting or selecting data).
+- Use **Server Components** for pages that primarily load data (for faster initial load) and **Client Components** or hooks for interactive parts (forms, buttons).
+- Include basic form validation (for example, ensure required fields are filled, email is valid format, etc.).
+- Use optimistic UI updates if appropriate (for example, when an invitee submits preferences, update the UI immediately).
+- The app **should not require user authentication for the MVP** (no login required; access is via unique links or public endpoints). *(We handle security via RLS or later improvements.)*
+- Write clean, commented code. Comment any complex logic or important sections.
+
+**Pages/Components Needed:**
+Based on the journey, here are the main pages and components (you fill this out):
+1. **Event Creation Page** - Form for the organizer to create a new lunch event (inputs: event name, date, time, list of emails to invite, maybe organizer name/email if needed).
+2. **Invitation Response Page** - The page an invitee sees when they click their invite link. It should show event info and a form to submit their dietary preferences (checkboxes for vegetarian/vegan/etc., text field for allergies).
+3. **Organizer Dashboard Page** - After creating an event, the organizer can view this page to see who's responded and see suggested restaurants. (Could be the same as event page for organizer, with additional sections.)
+4. **Restaurant Suggestions Component** - A component that displays the list of suggested restaurants (with basic info like name, cuisine, why it's suggested). If suggestions are loading, show a spinner. If none can be found, maybe show a message or allow retry.
+5. **Finalize Selection Page** - (Could be a modal or separate page) where the organizer confirms the chosen restaurant. Or simply an action button on the dashboard that finalizes and then shows confirmation.
+6. **Confirmation Page** - Page that everyone (organizer and invitees) can see once a lunch is finalized, showing the chosen restaurant and details of the event.
+
+Feel free to adjust or merge some of these as needed (e.g., the confirmation could be part of the dashboard or the invite page could change state if finalized).
+
+**Key Features (tie to journey steps):**
+- Event creation form: when submitted, it creates a new `event` record in the database, and creates `invitation` records for each invitee email, and perhaps sends emails (for MVP, sending actual emails can be omitted - maybe just assume invites are sent, or provide a copyable link).
+- Invitation link: We might simulate this by using a Next.js dynamic route like `/invite/[invitationId]` which serves the Invitation Response Page. When an invitee submits the form, it updates their `invitation` (status to accepted) and creates their `dietary_preferences` entry.
+- Organizer dashboard: Next.js page, probably at `/event/[eventId]` or similar, that fetches the event, all invitations and preferences, and if not finalized, triggers getting restaurant suggestions.
+- Restaurant suggestion generation: *For MVP, you can mock this or use a simple rule.* (We don't expect the AI to integrate an actual AI API unless specified. Possibly just query an external API or hardcode some suggestions based on cuisine.) If possible, integrate with an external API or use a placeholder function that given all preferences, returns a static list of 2-3 restaurant objects. *(We can refine later with real AI if needed.)*
+- Finalize action: When organizer finalizes, update the `event.selected_restaurant_id` and set `event.status` to finalized. After this, the invite link pages should detect that the event is finalized and show the final restaurant instead of the form.
+- Basic notification: For MVP, actual email or notifications can be skipped. Just updating the UI is fine.
+
+**Styling Preferences:**
+- Use Tailwind CSS utility classes for layout and styling (e.g., `flex`, `p-4`, `text-xl`, etc.).
+- Color scheme: e.g., **"Professional blues and grays"** (for a corporate feel) or **"Bright and cheerful"** (for a fun vibe) - choose a scheme that fits the vibe.
+- Typography: use a clean sans-serif font (the default Next.js font or Tailwind's default is fine), ensure text is readable (adequate sizes and contrast).
+- Overall feel: *Approachable and modern.* It should not look overly generic - include some styling such as a nice navbar or header for the app name, and a consistent form style.
+
+**Constraints:**
+- This is an MVP - prioritize core functionality over polish. It doesn't need to be perfect, just functional and clear.
+- Use Supabase client-side with the anon key for simplicity (no custom server needed for queries). But ensure no secret data is exposed - our RLS is enabled, and in MVP all data is basically public to those with links.
+- No authentication system in v1 (we rely on unique links for invites and a simple "organizer access" perhaps by a special URL). For now, assume if someone has the event link they can view it (security through obscurity, we'll improve later).
+- Keep things reasonably simple due to free tier limits (no heavy infinite loops or extremely chatty API calls).
+
+**OUTPUT:**
+Provide the Next.js project code with proper file structure. For each file, start with a comment like `// file: app/page.tsx` (for example) to indicate file paths. Include all important files: pages (routes), components, any library or util files, and a brief README if needed for how to run. Ensure the code is complete and will run when I add my Supabase credentials.
+Using the prompt: This is a very large request. In Cursor, you might want to run it in sections if the assistant can't handle it all at once. Alternatively, try using Vercel's v0.dev tool for UI generation, which is designed for this kind of prompt and might give a scaffold. If using v0, you can copy the relevant parts of the above (mainly the context, requirements, and skip some detail) and use its interface to generate components one by one. V0 will let you pick and choose generated components and refine them.
+If using Cursor's chat: paste the whole prompt. The AI might output something like a list of files with code blocks for each. Go through each file it gives, create it in your project (or use Cursor's "Edit All" feature to have it create them). Save each file.
+Common files for a Next.js App Router project likely include:
+- app/layout.tsx - with HTML <head> and layout (maybe a navbar).
+- app/page.tsx or app/(site)/... depending on how it structures routes. Possibly an app/event/[id]/page.tsx for the event dashboard, and app/invite/[id]/page.tsx for invite responses.
+- Some React components in a components/ folder.
+- A Tailwind CSS setup (globals.css with Tailwind directives, plus postcss.config.js and tailwind.config.js). Make sure these are present if needed (the default create-next-app template with Tailwind provides them, AI may or may not generate).
+- Supabase client setup, perhaps a utils/supabase.ts that does createClient(supabaseUrl, supabaseAnonKey). The keys will be pulled from env variables. Ensure it uses process.env.NEXT_PUBLIC_SUPABASE_URL.
+- Any needed API routes - maybe none if using client directly. But if the AI decides to secure data with a route, it might create an app/api/ route to fetch suggestions or finalize event. That's okay.
+Review the generated code:
+- Check that it references the correct table and column names from your schema. If the AI assumed different names (e.g., user instead of organizer_name), you might need to adjust the code or the database to match. Consistency is key.
+- Check that supabase calls use the right syntax, e.g., supabase.from('events').insert({...}) and so on. Ensure the client is properly initialized.
+- Ensure environment variables are referenced (should be NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY).
+- Look at any security implications: If invites are by ID in URL, technically anyone who guesses an ID could respond. Our IDs are UUIDs which are hard to guess (good). For extra safety, the invite link could include a secret token or just rely on UUID randomness. For MVP, that's fine.
+- Test conditional flows: e.g., if event is finalized, does the invite page check event.status and show the final result instead of the form? We should handle that so people don't submit after finalized.
+- Validate that forms have onSubmit handlers and actually call Supabase to insert or update data. If any part is left as a stub ("TODO connect API"), we'll need to implement it.
+Step 3: Connecting Your Application
+By now, you should have: the database schema in Supabase, and the Next.js code on your local machine (in Cursor or VSCode). Now we need to connect the two and run the app.
+Configure Supabase Connection:
+In your Next.js app folder:
+- Create a file named .env.local (Next.js will automatically load environment vars from here in development).
+- Add your Supabase project URL and anon key (from Supabase dashboard Project Settings → API):
+
+NEXT_PUBLIC_SUPABASE_URL=<your-supabase-url>
+NEXT_PUBLIC_SUPABASE_ANON_KEY=<your-anon-public-key>
+These correspond to the API endpoint and public API key for your project. (In Supabase Settings → API, use the "Project URL" and the "anon public" key.) Keep these values secret (the anon key can be public in the frontend, but treat the service_role key as highly sensitive - do not use service_role in the frontend).
+* Tailwind Setup (if needed): If your project uses Tailwind, ensure your globals.css is imported in layout.tsx or that the Tailwind config is correct. Run npm install to install any dependencies the AI included (e.g., @supabase/supabase-js, tailwindcss, etc.). If package.json wasn't generated, create one by running npm init -y and then add dependencies. (Alternatively, you could have started with npx create-next-app@latest --typescript --tailwind to get a template, then merged AI code into it.)
+* Run Database Migrations (if any): Since you executed SQL in Supabase directly, your cloud DB is up to date. If you decided to use Supabase CLI migrations instead, ensure you ran supabase db push to apply them.
+Run the app locally:
+- In your project folder, run:
+
+npm install    # install dependencies  
+npm run dev    # start Next.js dev server
+Open http://localhost:3000 in your browser. You should see your app's homepage or whatever default page was set up (perhaps an event creation form).
+* Try the main flows: Create an event, submit preferences, generate suggestions, finalize. Since we might not have email sending, you might get the invite link from the browser's URL when you create invites. For instance, the app might navigate you to /event/<eventId> for the dashboard. The invitations might not automatically email - but perhaps it shows you the invite links or invite IDs. You can simulate an invitee by opening an /invite/<invitationId> URL manually (copy from your database or from console logs if the app printed it). This is a bit of a gap for our MVP (since emailing invites isn't implemented, you may copy links manually for now).
+* Check Supabase tables: Use Supabase Table Editor to see if data is being inserted correctly when you use the app. You should see new rows in events, invitations, etc. If something's not saving, check the app's console or network calls for errors. Common issues could be RLS blocking a insert/select. If RLS is enabled without policies, the anon key cannot read/write by default[22]. To quickly allow our MVP to work, you have two options:
+* Disable RLS on those tables temporarily: (in Supabase, go to Table, Settings, disable RLS) - not recommended for prod, but fine for a quick test.
+* Add a quick policy to allow access: e.g., for each table, a policy like allow select for all using (true) and similar for insert/update on tables where appropriate[23]. Supabase's documentation has a simple policy example: "Anyone can insert/select" which basically opens the table for the anon role[24][25]. For development, that's okay. For production, you'd implement proper rules (like only allow invitees to update their own invitation, etc.).
+For now, if your app calls are failing with 401 unauthorized, it means RLS is doing its job. You need to either add policies or use the service key (not recommended in frontend). The quickest: go to SQL Editor and run something like:
+
+-- For each table, as needed:
+create policy "Temporary open access" on invitations
+for select using (true);
+create policy "Temp insert" on invitations
+for insert with check (true);
+Do similar for events, restaurant_suggestions, etc., for the operations your app performs. This basically allows the anon user to do those operations. Remember to revisit security later!
+* Once you adjust RLS or policies, test the flows again. Now you should be able to read/write data without auth errors.
+If everything works: You can see the event get created, open an invite link (maybe simulate by using one browser for organizer and another incognito window as an invitee), submit preferences, see suggestions appear (if that logic is implemented), finalize the choice, and see the final confirmation.
+Don't worry if the AI's suggestion feature is simplistic or if some pieces are a bit rough - the goal is to have a functional end-to-end MVP.
+Step 4: Deploying to Vercel
+It's deployment time! We already connected Vercel to GitHub, so you can deploy by pushing your code. Alternatively, use the Vercel CLI.
+* Commit all your code:
+
+  git add .  
+git commit -m "Add initial Next.js app code"
+git push
+  Push to the repository connected to Vercel (likely the main branch of your repo). Vercel will detect the push and start building. Within a minute or two, you should have a deployment. Go to your Vercel dashboard and watch the build logs if curious. If it succeeds, open the provided URL.
+* Environment Variables on Vercel: Remember to add NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY in your Vercel project settings (Dashboard → Settings → Environment Variables). If you skip this, the app on Vercel will not know how to talk to Supabase (and will likely fail to fetch data). Set those keys (same values as your .env.local). Then redeploy (Vercel might prompt to redeploy after adding vars, or you can push another commit).
+* Once deployed, test the live app at your project URL. It should behave like your local version. Check that it can indeed interact with the Supabase instance (it should, as long as env vars are correct and RLS policies allow anon).
+* Troubleshooting Deployment: If the Vercel build fails, inspect the logs. Common issues: missing dependency in package.json, or build errors/warnings that were hidden in dev. Fix locally and push again. If the app builds but doesn't work as expected: open your browser dev tools on the live site, see if any requests are failing (maybe forgot to set env vars or the URL is wrong). You can also use vercel logs to see runtime errors.
+If you used pnpm locally, note that Vercel by default runs npm install. It should detect the lockfile (pnpm-lock.yaml) and use PNPM if possible. If not, you might specify in vercel config or use vercel CLI with custom build commands[26]. But for simplicity, using npm/yarn might avoid that issue.
+At this point, congratulations - you have a deployed MVP! 🚀
+You went from idea to a live application using AI as your assistant and a solid dev stack connecting four platforms (GitHub for code repo, Supabase for DB, Vercel for hosting, Cursor for coding). Take a moment to reflect on this accomplishment!
+
+Testing & Troubleshooting
+Building with AI can be a fast process, but expect to encounter bumps along the way. This section provides guidance on how to systematically troubleshoot common issues and iterate intelligently when things go wrong (because they will - and that's okay!).
+When Code Generation Doesn't Go as Planned:
+- The AI output is incomplete or errors out: Don't panic. Break the task into smaller chunks. For example, ask for one component at a time instead of the whole app. Or explicitly request file-by-file if the AI stopped halfway. You can prompt: "Continue from where you left off" if it got cut off.
+- Syntax or Type errors: If the code the AI gives has obvious errors (maybe it used an outdated Next.js pattern, or TypeScript types don't line up), run the app or npm run build to see errors, then feed those error messages back to the AI[12]. For instance: "I got this error: [paste error]. Please fix the code accordingly." The AI often can suggest the fix.
+- Feature not working as intended: Describe the issue to the AI. E.g., "The restaurant suggestions never appear even after invites are submitted." Provide relevant code snippets (like the function that should load suggestions) and ask, "Can you identify the bug?" AI can often debug if given context, because it can simulate what the code is doing and point out logic mistakes or missing pieces.
+Integrations & Platform Issues:
+- Supabase RLS blocking data: As noted, if you get 401 unauthorized on data fetching, it's likely row level security. Quick fix for dev: create policies to allow the operations or disable RLS on those tables[22]. In the long run, implement proper policies (e.g., only allow invitees to update their own entry, etc.). Supabase has an AI assistant for writing RLS policies in their dashboard which you can literally describe the rule and it writes the SQL - pretty cool!
+- Environment variables not set: If your deployed app isn't working, double-check that all necessary env vars are set on Vercel. Also ensure you didn't accidentally commit the .env.local (which you shouldn't, but if you did, Vercel might ignore it anyway). Use vercel env ls to list what's on Vercel. Locally, make sure .env.local is loaded (Next.js loads it by default in dev). - Vercel deployment fails: Common cause when using new frameworks or package managers (like pnpm) is that Vercel didn't auto-detect settings. Ensure the Project Settings on Vercel specify the correct framework = Next.js and the root directory (if you didn't put your app in a subfolder). If using pnpm, Vercel should detect the lockfile; if not, you can set an environment variable PNPM_VERSION or use a vercel.json to specify installCommand: pnpm install[26]. Alternatively, just use npm to avoid this.
+- Git mistakes: If you committed something wrong (like your anon key in code), revoke the key from Supabase (Project Settings → API → roll the key) and commit a removal. Always put secrets in env. If you mess up commit history, you can force push after rewriting, but that's advanced. Alternatively, rotate secrets and move on.
+Using AI to Refine & Improve:
+- The first pass gets you a working MVP. You can now iteratively improve design and functionality: try asking AI to change styles ("make this button blue with Tailwind") or add a feature ("send an email on event finalize" - though that involves integrating an email API, which you can do with something like EmailJS or SendGrid). Add one feature at a time and test.
+- If you want to use actual AI for restaurant suggestions (which would be meta - AI building AI features!), you could integrate with an API like OpenAI. But that requires an API key and is beyond our MVP for now. Instead, maybe use a static list of restaurants or a simple filter logic with a dummy dataset. We kept it simple intentionally.
+Maintaining Flow:
+Remember the Flow State Formula:
+- Clear Goals: Keep a clear next task in mind (e.g., "I want the invite page to show a confirmation if event is finalized").
+- Fast Feedback: Run the app often, push to staging often. See results quickly and adjust. Deploying early lets you catch issues that only appear in the cloud environment.
+- Challenge vs Skill: If you hit something very challenging (like implementing payments or complex auth), consider if it's needed for MVP or if you can simplify. Don't let a huge challenge kill your momentum - it might mean it's out of MVP scope (move it to next phase).
+- Action = Awareness: Try to focus on one small step at a time, be present when coding or prompting - pay attention to what the AI produces; don't just paste blindly.
+- Intrinsic Rewards: Celebrate small wins! Got the form working? High-five! Deployed without errors? Awesome! This positivity will keep you engaged.
+If you get stuck even after debugging and asking AI for help, consider searching documentation or forums. Platforms like Stack Overflow or the Supabase Discord can be lifesavers for tricky issues.
+Finally, document what you learn. Keep notes (like in the "Notes & Learnings" section below) so you can reflect later or share your knowledge.
+Common Troubleshooting Scenarios & Solutions:
+- App can't fetch from Supabase, but no obvious error: Check browser console network tab - maybe CORS issue? Supabase allows requests from anywhere by default, so likely not CORS. If using an API route on Next as proxy, ensure it's calling the right URL. Logging the error from the supabase response (error.message) can reveal issues (like a misnamed column causing a SQL error).
+- Component state not updating: Perhaps the AI forgot to use React state where needed. E.g., suggestions list might require a useState or useEffect to fetch after preferences submitted. Identify such logic gaps and implement accordingly (AI sometimes leaves these implicit).
+- Styling looks bad or broken: Could be missing Tailwind CSS import or that the AI's Tailwind classes were off. Inspect elements in dev tools, adjust classes or wrap components in appropriate containers. You can even ask AI: "The layout is off, how to center this div?" etc.
+The bottom line: treat the AI as a collaborator - you still guide the process, and you have to verify and tweak the outputs. This collaboration, once you get used to it, can be incredibly productive.
+Notes & Learnings
+(Use this section to jot down what you discovered during the project. It's good to reflect on what went well, what was challenging, and what you'd do differently.)
+* What went well: List things that the AI or tools made super easy, or any pleasant surprises.
+* What was frustrating: Note any struggles, maybe prompts that didn't work initially, or tooling issues (like environment setup hassles).
+* What I'll do differently next time: Perhaps you found a better order to do things in hindsight, or learned a trick to prompt engineering.
+* Questions to research later: Anything you're still curious about or not fully understanding (e.g., "How to implement proper email invites?" or "How to secure the app for real users?").
+Example notes:
+- The AI generated the SQL schema flawlessly with all constraints - huge time saver.
+- Had trouble with Tailwind setup; needed to manually configure because AI missed the config files.
+- Next time, I might use the create-next-app template first, then incrementally add features with AI, to avoid some setup issues.
+- I need to learn more about Supabase RLS policies - I opened everything for now, but want to properly restrict data by user.
+Next Steps: Beyond MVP
+You've got a working MVP 🎉. Where to go from here? A few ideas for expanding and improving the app (and your skills):
+* Add Authentication: Instead of relying on invite links, you could integrate Supabase Auth so that users can log in. For example, the organizer could log in and see all their events, and invitees could maybe log in to respond (or still use magic links). Supabase supports email magic links and social logins out-of-the-box. This would tighten security (tie invitations to actual user accounts).
+* Improve AI Suggestions: Our restaurant suggestion logic is primitive. You could connect to a real API (Google Places or Yelp API) to search restaurants that match criteria, or use OpenAI to parse a list of restaurants and filter by requirements. This could be a fun enhancement and learning experience in calling third-party APIs.
+* Email Notifications: Integrate an email service (like SendGrid, Mailgun, or even Supabase's email if using auth) to actually email invite links and final details to users. This makes the app more practical.
+* Payment Processing: If this was a different kind of app (for example, if planning events that require budget), you might add Stripe for payments in a later iteration. For our lunch app, maybe not needed. But good to know how to integrate if relevant to your idea.
+* Performance Optimization: As your app grows, consider adding database indexes (if queries slow down) beyond the basics we did. Use caching or SSR wisely for faster loads. The free tier Supabase can handle our small app easily, but think about limits. Also, if using real AI APIs, optimize calls to not be too expensive or slow (maybe cache suggestions for an event so you don't recompute every time).
+* Error Handling & UX Polish: Add more user feedback, catch errors (e.g., show a message if suggestion generation fails). Make the UI pretty with better styling or maybe integrate a UI library like shadcn/UI or Material UI if needed. Ensure mobile views look good (use responsive Tailwind classes).
+* Testing: Write some tests for critical functions. For instance, you can use Jest or Cypress to test that an invite flow works. This ensures future changes (or AI regenerations) don't break existing functionality.
+* Analytics & Logging: Add something like Vercel Analytics or Supabase logs to see how users are using the app, track errors, etc.
+Remember to iterate gradually. Each new feature, apply the same approach: plan it, perhaps prompt AI for initial code, then refine and connect, then test and deploy.
+By now, you should feel more comfortable thinking at a higher level and letting AI handle boilerplate, while you guide the project. You've effectively acted as the architect and product manager, and the AI as a very helpful junior engineer. This dynamic can let you build much more than you could alone manually.
+Good luck continuing your build, and have fun with vibe coding! 🚀
+
+(c) 2025 Vibe Coding Course - Community Driven Learning
+
+[1] [5] Local Development & CLI | Supabase Docs
+https://supabase.com/docs/guides/local-development
+[2] [3] [4] [13] [14] Git · GitHub
+https://github.com/git-guides
+[6] [7] [8] [15] [16] CLI Reference | Supabase Docs
+https://supabase.com/docs/reference/cli/introduction
+[9] [10] Hosting Your React Application on Vercel: A Step-by-Step Guide | by Michael / slashdev.io | Medium
+https://medium.com/@michael.slashventures/hosting-your-react-application-on-vercel-a-step-by-step-guide-d0e8ceebf2b4
+[11] [12] A step-by-step guide to V0.dev development : r/nextjs
+https://www.reddit.com/r/nextjs/comments/1jgbvx7/a_stepbystep_guide_to_v0dev_development/
+[17] Documentation: 18: Part I. Tutorial - PostgreSQL
+https://www.postgresql.org/docs/current/tutorial.html
+[18] PostgreSQL Tutorial - W3Schools
+https://www.w3schools.com/postgresql/
+[19] [20] [21] [24] [25] Vercel | Works With Supabase
+https://supabase.com/partners/integrations/vercel
+[22] [23] Use Supabase with Next.js | Supabase Docs
+https://supabase.com/docs/guides/getting-started/quickstarts/nextjs
+[26] Deploy Next.js Supabase to Vercel
+https://makerkit.dev/docs/next-supabase-turbo/going-to-production/vercel
