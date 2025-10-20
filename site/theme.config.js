@@ -1,11 +1,6 @@
 export default {
   logo: (
-    <>
-      <span className="mr-2 font-extrabold">From Idea to App</span>
-      <span className="text-gray-600 font-normal hidden md:inline">
-        Building with AI
-      </span>
-    </>
+    <span className="font-extrabold">Building with AI Course</span>
   ),
   project: {
     link: 'https://github.com/ACNoonan/vibe-coding-course',
@@ -22,7 +17,7 @@ export default {
     component: () => (
       <div className="flex w-full flex-col items-center sm:items-start">
         <p className="mt-6 text-xs">
-          © {new Date().getFullYear()} From Idea to App — Building with AI
+          © {new Date().getFullYear()} Building with AI Course
         </p>
       </div>
     ),

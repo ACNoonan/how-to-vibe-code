@@ -1,104 +1,98 @@
-# From Idea to App: Building with AI
+# Vibe Coding Course · From Idea to App
 
-**Master the art of building software with AI—learn a systematic workflow that works across any tool or platform.**
+> Flow-state development with AI: a public curriculum for shipping real products with Cursor, Supabase, GitHub, and Vercel.
 
-This course teaches the engineering mindset and systematic workflow that will keep you productive no matter how the toolset changes.
+[![Site](https://img.shields.io/badge/site-live-blue?style=flat-square)](https://ACNoonan.github.io/vibe-coding-course)
+[![License](https://img.shields.io/badge/license-MIT-lightgray?style=flat-square)](./LICENSE)
+[![Contributions](https://img.shields.io/badge/contributions-welcome-brightgreen?style=flat-square)](./CONTRIBUTING.md)
 
-## 🌐 Live Site
+This repository powers the public course materials that guide students from zero to a deployed MVP using an AI-assisted workflow. Everything here is open for improvement—typo fixes, new exercises, or fresh troubleshooting tips are all welcome.
 
-[Visit the course website](https://ACNoonan.github.io/vibe-coding-course) (after deployment)
+## 🌐 Live Course
 
-## 📚 Course Content
+- **Site:** [ACNoonan.github.io/vibe-coding-course](https://ACNoonan.github.io/vibe-coding-course)
+- **Focus:** Teaching an end-to-end AI development loop (plan → prompt → build → deploy)
+- **Audience:** Developers, product folks, and entrepreneurs who want to build faster with AI copilots
 
-1. **Dev Environment Setup** - Tools and accounts setup
-2. **CLI Services & Advanced Setup** - Git, Supabase, Vercel workflows
-3. **Planning & Development** - Systematic approach to building MVPs
-4. **Self-Hosting 101** - Deploy to your own infrastructure
+## 📚 Course Modules
 
-## 🛠️ Technical Stack
+1. **[Introduction](./site/pages/introduction.mdx)** — Mindset and workflow overview  
+2. **[Dev Environment Setup](./site/pages/dev-environment-setup.mdx)** — Accounts & installs  
+3. **[CLI Services](./site/pages/cli-services.mdx)** — Daily Git, Supabase, and Vercel routines  
+4. **[Planning & Development Worksheet](./site/pages/planning-worksheet.mdx)** — AI-ready planning templates  
+5. **[Build with AI Flow](./site/pages/build-with-ai-flow.mdx)** — Cursor-first teaching script  
+6. **[Self-Hosting 101](./site/pages/self-hosting-101.mdx)** — Advanced deployment to AWS EC2  
+7. **[Troubleshooting & Logs](./site/pages/troubleshooting.mdx)** — Fast checks when something breaks
 
-- **Framework:** [Next.js](https://nextjs.org/) with [Nextra](https://nextra.site/) docs theme
-- **Styling:** Tailwind CSS
-- **CMS:** [Tina CMS](https://tina.io/) for visual editing
-- **Deployment:** GitHub Pages via GitHub Actions
-- **Package Manager:** pnpm
+> The course ships as a static Next.js/Nextra site. Each module is a markdown/MDX page you can edit via pull request.
 
-## 🚀 Quick Start
+## 🛠️ Built With
 
-### For Students
+- [Next.js](https://nextjs.org/) + [Nextra](https://nextra.site/) docs theme
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Tina CMS](https://tina.io/) (optional visual editor)
+- Supabase, GitHub, Vercel, and Cursor as the primary teaching stack
+- `pnpm` for dependency management
 
-Just visit the live site and start learning! You can contribute improvements via the "Edit this page" button (when Tina is configured).
-
-### For Contributors
-
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for how to suggest improvements.
-
-### For Developers
+## 🚀 Local Development
 
 ```bash
-# Clone the repository
 git clone https://github.com/ACNoonan/vibe-coding-course.git
 cd vibe-coding-course/site
-
-# Install dependencies
 pnpm install
-
-# Run development server
 pnpm run dev
-
-# Visit http://localhost:3000
+# visit http://localhost:3000
 ```
 
-## 📖 Documentation
-
-- **[CONTRIBUTING.md](./CONTRIBUTING.md)** - How to contribute to the course
-- **[MAINTENANCE.md](./MAINTENANCE.md)** - Guide for maintainers
-- **[site/TINA_SETUP.md](./site/TINA_SETUP.md)** - Setting up Tina CMS
-
-## 🎯 Features
-
-- ✅ Interactive checkboxes that persist in browser storage
-- ✅ Custom callout components for important information
-- ✅ Download your progress as markdown
-- ✅ Editable input fields for exercises
-- ✅ Visual content editing via Tina CMS (when configured)
-- ✅ Community-driven contributions via GitHub PRs
-- ✅ Fully static site with no backend required
-
-## 📝 Architecture
-
-```
-vibe-coding-course/
-├── site/                # Next.js + Nextra application
-│   ├── pages/          # Course content (MDX)
-│   ├── components/     # React components
-│   ├── .tina/         # Tina CMS config
-│   └── public/        # Static assets
-├── content/           # Source markdown files
-└── .github/
-    └── workflows/     # CI/CD configuration
-```
+The content lives in `site/pages/`. Update an `.mdx` file, preview locally, then open a pull request.
 
 ## 🤝 Contributing
 
-We welcome contributions! Whether it's:
+We actively encourage public contributions:
 
-- Fixing typos
-- Improving explanations
-- Adding examples
-- Updating outdated information
-- Suggesting new content
+- 📚 Improve explanations, fix typos, or clarify prompts  
+- 🧪 Share new exercises, troubleshooting tips, or tool updates  
+- 🧰 Extend the curriculum with companion guides or examples
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for details.
+Before you start:
 
-## 📜 License
+1. Read the [Contributing guidelines](./CONTRIBUTING.md)  
+2. Review the [Code of Conduct](./CODE_OF_CONDUCT.md)  
+3. Open a [discussion or issue](https://github.com/ACNoonan/vibe-coding-course/issues/new/choose) if you want to float an idea first
 
-[Add your license here]
+Pull requests from first-time contributors are welcome—maintainers will help you land the change.
 
-## 🙏 Acknowledgments
+## 🧭 Repository Layout
 
-Built with the philosophy that AI tools should amplify human thinking, not replace it.
+```
+vibe-coding-course/
+├── README.md                # You are here
+├── CONTRIBUTING.md          # How to contribute
+├── CODE_OF_CONDUCT.md       # Community standards
+├── LICENSE                  # MIT license
+├── site/                    # Next.js + Nextra site
+│   ├── pages/               # Course modules (MDX)
+│   ├── components/          # Custom UI (callouts, inputs, etc.)
+│   └── public/              # Static assets
+└── .github/
+    ├── ISSUE_TEMPLATE/      # Issue templates
+    └── workflows/           # CI/CD configuration
+```
+
+## 📅 Roadmap
+
+- [ ] Expand “Build with AI Flow” with video walkthroughs  
+- [ ] Add companion exercises for Supabase RLS and Vercel environment management  
+- [ ] Publish a gallery of student-built MVPs  
+- [ ] Localize core modules (community help encouraged!)
+
+Track or suggest new ideas in [GitHub issues](https://github.com/ACNoonan/vibe-coding-course/issues).
+
+## 🙋‍♀️ Maintainer
+
+**Adam Noonan** · [x.com/_adamnoonan](https://x.com/_adamnoonan) · [LinkedIn](https://www.linkedin.com/in/adam-noonan/)  
+Questions or ideas? Open an issue or reach out.
 
 ---
 
-**Questions?** Open an issue on GitHub or reach out to the maintainers.
+Built with the belief that AI should amplify human creativity. Let’s build together. 🚀

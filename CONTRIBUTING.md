@@ -2,6 +2,8 @@
 
 Thank you for your interest in improving the Vibe Coding Course! This guide explains how you can contribute.
 
+> 🧭 **Start here:** Please review the [Code of Conduct](./CODE_OF_CONDUCT.md) before contributing and use the issue templates when filing bugs or improvement ideas. We welcome first-time contributors!
+
 ## Two Ways to Contribute
 
 ### Option 1: Visual Editor (Recommended for Content Changes)
@@ -57,4 +59,3 @@ Visit http://localhost:3000
 Open an issue on GitHub or reach out to the maintainers.
 
 Happy learning and contributing! 🚀
-

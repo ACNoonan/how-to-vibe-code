@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📣 Ask a question
+    url: https://github.com/ACNoonan/vibe-coding-course/discussions/new
+    about: Start a discussion if you want feedback or aren’t sure which template to use.
