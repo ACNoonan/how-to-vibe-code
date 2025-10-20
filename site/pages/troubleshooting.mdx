@@ -1,0 +1,64 @@
+---
+title: Troubleshooting & Logs
+description: Quick pointers to the logs and first-fix steps for Cursor, GitHub, Supabase, and Vercel.
+---
+
+# Troubleshooting & Logs
+
+**When something breaks, go straight to the right log, grab the error, and decide the next action.**
+
+---
+
+## Cursor IDE
+
+- **Where:** `Cmd/Ctrl + L` → right panel chat history, or `Cmd/Ctrl + \`` for the integrated terminal.
+- **Look for:** Last failed command, model response errors, stack traces in the terminal.
+- **First fix steps:**
+  - Re-run the command with `--verbose` if available (e.g., `npm run dev -- --verbose`).
+  - Highlight the error message and ask Cursor: “Explain this stack trace and propose a fix.”
+  - If Cursor keeps guessing, paste the relevant file section and restate the requirement plainly.
+
+---
+
+## GitHub (Pull Requests & Actions)
+
+- **Where:** Repo → **Pull Requests** → select PR → **Checks** tab for Actions logs.
+- **Look for:** Red ❌ steps, especially `build`, `lint`, or `deploy`.
+- **First fix steps:**
+  - Click the failing job → **View raw logs** to copy the exact error.
+  - If lint/test failure, reproduce locally with the same command shown in the log.
+  - For permission or secret issues, confirm the GitHub → Vercel/Supabase integration scopes.
+  - Restart only after you understand the failure—otherwise you’ll burn more time waiting.
+
+---
+
+## Vercel Deployments
+
+- **Where:** Vercel dashboard → your project → **Deployments** → select the failing build → **Logs**.
+- **Look for:** Build step errors (dependency install, Next.js build) or runtime errors after deploy.
+- **First fix steps:**
+  - Match the failing step with the corresponding local command (`pnpm install`, `pnpm build`, etc.).
+  - Check **Environment Variables** tab—missing env vars are the #1 production issue.
+  - If runtime errors appear post-deploy, open the deployment URL with `?vercelToolbarCode=...` for live logs, or run `vercel logs <deployment-url>`.
+
+---
+
+## Supabase
+
+- **Where:** Supabase dashboard → project → **Logs** (top nav) or **Table Editor / SQL** for schema errors.
+- **Look for:** API errors (Auth, Functions), Postgres errors, rate limit warnings.
+- **First fix steps:**
+  - For migration failures, run `supabase db push` locally and watch the terminal output.
+  - Database errors often reference a specific table/column—jump to that migration file and verify schema.
+  - Auth/function issues: open **Authentication → Providers** or **Edge Functions → Logs** for more context.
+  - If you broke local dev, reset with `supabase db reset` (warn team before wiping data).
+
+---
+
+## When in Doubt
+
+1. Capture the exact error message and where it appeared.
+2. Note what changed right before the failure.
+3. Share both in Cursor or with your team and propose one next experiment.
+
+Fast feedback beats frantic guessing—let the logs guide the fix.

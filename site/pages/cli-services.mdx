@@ -5,401 +5,127 @@ description: Git fundamentals, Supabase CLI, Vercel CLI, and development workflo
 
 # CLI Services: Advanced Dev Environment Setup
 
-**Git Fundamentals, Supabase CLI, and Development Workflows**
+**Keep this page open while you work.** It shows the daily loop and deeper commands when you need them.
 
 ---
 
-## 📚 Part 1 — Git Basics for Beginners
-
-Git helps you track changes, collaborate with others, and sync your code between your computer and GitHub.
-
-### Core Git Workflow (The Essential Four)
-
-**1. Pull** — Download latest changes from GitHub to your computer
+## Daily Workflow Snapshot
 
 ```bash
 git pull
-```
-
-Use this **before you start working** to make sure you have the newest code.
-
-**2. Add** — Stage files you want to save (like adding items to a shopping cart)
-
-```bash
-# Add a specific file
-git add filename.js
-
-# Add all changed files
+supabase db diff   # if schema changed
+npm run dev        # or vercel dev
+# build feature with Cursor
 git add .
-```
-
-**3. Commit** — Save your changes with a descriptive message
-
-```bash
-git commit -m "Add user login feature"
-```
-
-Think of commits as save points in a video game — each one captures the state of your project.
-
-**4. Push** — Upload your commits to GitHub
-
-```bash
+git commit -m "feat: ..."
 git push
+vercel --prod      # when ready for prod
 ```
 
-### Complete Example Workflow
+---
+
+## Git Essentials
+
+- `git pull` — sync before you touch code
+- `git status` — check what changed
+- `git add .` + `git commit -m "..."` — save grouped work
+- `git push` — share with GitHub / trigger Vercel
+
+**Common fixes**
+
+| Situation | Command |
+| --- | --- |
+| Merge conflict | `git pull`, resolve files, `git add .`, `git commit` |
+| Undo uncommitted file | `git restore path/to/file` |
+| Fix last commit message | `git commit --amend -m "new message"` |
+
+<details>
+<summary>Need first-time repo setup?</summary>
 
 ```bash
-# Start your work session
-git pull
-
-# Make changes to your files...
-# (edit code, create new files, etc.)
-
-# Check what changed
-git status
-
-# Stage your changes
-git add .
-
-# Save with a message
-git commit -m "Fix navigation bug and add footer"
-
-# Upload to GitHub
-git push
-```
-
-### Checking Your Status
-
-```bash
-# See what files changed
-git status
-
-# See detailed changes
-git diff
-
-# See commit history
-git log --oneline
-```
-
-### First-Time Repository Setup
-
-If you're starting a new project:
-
-```bash
-# In your project folder
 git init
 git add .
 git commit -m "Initial commit"
-
-# Connect to GitHub (replace with your repo URL)
 git remote add origin https://github.com/yourusername/your-repo.git
 git push -u origin main
 ```
 
-### Common Issues & Fixes
-
-**Merge conflicts?** This happens when GitHub has changes you don't have locally.
-
-```bash
-git pull
-# Git will tell you about conflicts
-# Open conflicted files and choose which changes to keep
-git add .
-git commit -m "Resolve merge conflicts"
-git push
-```
-
-**Made a mistake in your last commit message?**
-
-```bash
-git commit --amend -m "Corrected commit message"
-```
-
-**Want to undo changes before committing?**
-
-```bash
-git restore filename.js  # Undo changes to one file
-git restore .            # Undo all changes
-```
+</details>
 
 ---
 
-## 🗄️ Part 2 — Supabase CLI Deep Dive
+## Supabase CLI
 
-The Supabase CLI lets you manage your database, run migrations, and develop locally.
+- `supabase login` (one-time) → `supabase link --project-ref <ref>`
+- `supabase migration new <name>` — scaffold SQL file
+- `supabase db push` — apply migrations to remote
+- `supabase db pull` — sync remote schema back to files
+- `supabase db diff` — compare local vs. remote (requires Docker for full local diff)
+- `supabase db shell` — run ad-hoc SQL queries
 
-### Initial Setup & Login
-
-```bash
-# Login to Supabase
-supabase login
-
-# Link your project (run this in your project folder)
-supabase link --project-ref your-project-ref
-```
-
-**Finding your project ref:** Go to your Supabase dashboard → Project Settings → General → Reference ID
-
-### Database Migrations
-
-Migrations are version-controlled database changes — think of them as Git commits, but for your database structure.
-
-### Creating a Migration
+**Quick workflow**
 
 ```bash
-# Create a new migration file
-supabase migration new create_users_table
-```
-
-This creates a file like `supabase/migrations/20240110123456_create_users_table.sql`
-
-Edit this file to define your database changes:
-
-```sql
--- Example migration
-create table users (
-  id uuid primary key default uuid_generate_v4(),
-  email text unique not null,
-  created_at timestamp with time zone default now()
-);
-```
-
-### Pushing Migrations to Your Database
-
-```bash
-# Apply migrations to your remote Supabase project
+supabase migration new add_tasks_table
+# edit the generated SQL
 supabase db push
+git add supabase/migrations
+git commit -m "Add tasks table"
 ```
 
-This runs any new migration files against your cloud database.
-
-### Pulling Schema from Remote
+<details>
+<summary>Local development commands</summary>
 
 ```bash
-# Download current database schema to local migration files
-supabase db pull
+supabase start     # spins up local stack (needs Docker)
+supabase db reset  # apply migrations locally
+supabase stop      # shut down local services
 ```
 
-Use this when someone else has made database changes, or to capture manual changes you made in the Supabase dashboard.
-
-### Migration Workflow Example
-
-```bash
-# 1. Create migration
-supabase migration new add_profiles_table
-
-# 2. Edit the generated .sql file in supabase/migrations/
-
-# 3. Apply to remote database
-supabase db push
-
-# 4. Commit to Git
-git add supabase/migrations/
-git commit -m "Add profiles table migration"
-git push
-```
-
-### Understanding the Migrations Folder
-
-```
-your-project/
-└── supabase/
-    ├── migrations/
-    │   ├── 20240101120000_initial_schema.sql
-    │   ├── 20240105140000_add_profiles.sql
-    │   └── 20240110160000_add_posts.sql
-    └── config.toml
-```
-
-- Each file is timestamped and runs in order
-- Never edit old migration files — create new ones instead
-- These files should be committed to Git
-- Migrations are **one-way** — they describe what to add/change
-
-### Viewing Your Database Schema
-
-**Option 1: Inspect command (Requires Docker Desktop)**
-
-```bash
-# View all tables and their columns
-supabase db diff
-```
-
-**Option 2: Generate schema documentation**
-
-```bash
-# Show current remote schema as SQL
-supabase db dump --schema public
-
-# Show specific table
-supabase db dump --schema public --table users
-```
-
-**Option 3: Interactive PostgreSQL shell**
-
-```bash
-# Connect to remote database
-supabase db shell
-
-# Then run SQL queries:
-\dt           -- List all tables
-\d users      -- Describe 'users' table structure
-SELECT * FROM information_schema.columns WHERE table_name = 'users';
-\q            -- Quit
-```
-
-**Option 4: Use the dashboard**
-
-Go to your Supabase project → Table Editor or SQL Editor for a visual interface.
-
-### Local Development with Supabase
-
-Run a complete local Supabase instance (requires Docker Desktop):
-
-```bash
-# Start local Supabase
-supabase start
-
-# This gives you:
-# - Local database (PostgreSQL)
-# - Local API
-# - Local Studio dashboard (usually http://localhost:54323)
-
-# Apply migrations locally
-supabase db reset
-
-# Stop local instance
-supabase stop
-```
-
-### Useful Commands Summary
-
-```bash
-supabase login                    # Authenticate CLI
-supabase link                     # Connect to cloud project
-supabase migration new <name>     # Create migration file
-supabase db push                  # Apply migrations to remote
-supabase db pull                  # Download remote schema
-supabase db diff                  # Compare local vs remote
-supabase db reset                 # Reset local DB with migrations
-supabase db shell                 # Open PostgreSQL shell
-supabase status                   # Check local services
-```
+</details>
 
 ---
 
-## ⚡ Part 3 — Vercel CLI Essentials
+## Vercel CLI
 
-The Vercel CLI lets you deploy from your terminal and manage projects.
+- `npm install -g vercel` (once) → `vercel login`
+- `vercel` — link project + deploy preview
+- `vercel --prod` — push to production manually
+- `vercel dev` — run Next.js locally with Vercel settings
+- `vercel logs <deployment-url>` — view production/runtime errors
 
-### Installation & Login
+<details>
+<summary>Environment variables & settings</summary>
 
-```bash
-# Install globally
-npm install -g vercel
+- Pull config locally: `vercel pull`
+- Manage env vars: `vercel env pull .env.production`
+- List projects: `vercel ls`
 
-# Login (opens browser)
-vercel login
-```
-
-### Deploying Your Project
-
-```bash
-# First-time setup (run in project folder)
-vercel
-
-# Follow prompts to link project
-# This creates a vercel.json config file
-
-# Deploy to preview
-vercel
-
-# Deploy to production
-vercel --prod
-```
-
-### Useful Commands
-
-```bash
-vercel dev           # Run local development server
-vercel logs          # View deployment logs
-vercel ls            # List your projects
-vercel inspect       # Get deployment details
-vercel env           # Manage environment variables
-vercel pull          # Download project settings
-```
+</details>
 
 ---
 
-## 💻 Part 4 — Cursor IDE Tips
+## Cursor IDE Tips
 
-Cursor doesn't have a traditional CLI, but here are useful terminal commands within Cursor:
-
-### Opening Projects
-
-```bash
-# Open current folder in Cursor
-cursor .
-
-# Open specific folder
-cursor /path/to/project
-```
-
-### Cursor Features to Know
-
-- **Cmd/Ctrl + K**: AI chat inline
-- **Cmd/Ctrl + L**: Open AI chat panel
-- **Cmd/Ctrl + Shift + P**: Command palette
-- **Cmd/Ctrl + `**: Open integrated terminal
+- Open terminal: `Cmd/Ctrl + \``  
+- Launch project from shell: `cursor .`
+- Quick commands: `Cmd/Ctrl + K` (inline chat), `Cmd/Ctrl + L` (side panel chat), `Cmd/Ctrl + Shift + P` (command palette)
+- When Cursor writes code:
+  1. Read the diff
+  2. Reject if off-track
+  3. Re-prompt with clarifications or paste existing context
 
 ---
 
-## 🎯 Recommended Daily Workflow
+## Practice Loop
 
-```bash
-# Morning: Get latest changes
-git pull
+1. `git pull`
+2. `supabase migration new add_example`
+3. Add a column in the SQL file
+4. `supabase db push`
+5. `git add supabase/migrations`
+6. `git commit -m "Add example column"`
+7. `git push`
+8. `vercel --prod`
 
-# Work on features...
-
-# Run local dev server
-npm run dev
-# or: vercel dev
-
-# Test database changes
-supabase db diff
-
-# Save your work
-git add .
-git commit -m "Descriptive message about what you built"
-git push
-
-# Deploy (Vercel auto-deploys from GitHub, or use CLI)
-vercel --prod
-```
-
----
-
-## 📖 Additional Resources
-
-- **Git:** [GitHub Git Guide](https://docs.github.com/en/get-started/using-git)
-- **Supabase CLI:** [Official CLI Docs](https://supabase.com/docs/guides/cli)
-- **Vercel CLI:** [Vercel CLI Reference](https://vercel.com/docs/cli)
-- **SQL Basics:** [PostgreSQL Tutorial](https://www.postgresql.org/docs/current/tutorial.html)
-
----
-
-## ✅ Practice Exercise
-
-Try this end-to-end workflow:
-
-1. Create a new migration: `supabase migration new add_tasks_table`
-2. Add a simple table in the migration file
-3. Push to database: `supabase db push`
-4. Check it worked: `supabase db shell` → `\dt`
-5. Commit to Git: `git add .` → `git commit -m "Add tasks table"` → `git push`
-6. Deploy your app: `vercel --prod`
-
-**You've now version-controlled both your code AND your database structure!**
-
+If any step fails, capture the error and jump to [Troubleshooting & Logs](/troubleshooting).

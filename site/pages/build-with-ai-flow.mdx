@@ -1,0 +1,117 @@
+---
+title: Build with AI Flow
+description: Run the Cursor-first development loop from planning to deploy during live sessions.
+---
+
+# Build with AI Flow
+
+**Use this run sheet while you teach.** It keeps everyone in the same Cursor-guided loop: plan, prompt, implement, verify.
+
+---
+
+## Quick Run Sheet
+
+1. **Frame the task** — Re-state the user story or bug in one sentence.
+2. **Prep Cursor** — Open the repo, highlight key files, feed the goal + constraints.
+3. **Generate plan** — Ask for a minimal change list; confirm or trim.
+4. **Apply changes** — Let Cursor write files, review diff together, iterate fast.
+5. **Verify** — Run local command or deployment check; log issues in [Troubleshooting & Logs](/troubleshooting).
+
+Repeat until the user story is complete and merged.
+
+---
+
+## 1. Kickoff & Planning
+
+- Pull from `main` and run the project. Confirm everyone is on the same commit.
+- Review the worksheet outputs from [Planning & Development](/planning-worksheet) to anchor scope.
+- In Cursor chat paste the current objective and any guardrails (tech stack, UX must-haves, data constraints).
+
+**Prompt starter**
+
+```text
+We are continuing the Team Lunch Coordinator app. Current status: [brief summary].
+Objective: [single user story].
+Constraints: [bullets].
+Return: a short implementation plan with files to touch, pre-checks, and verifications.
+```
+
+---
+
+## 2. Structure the Work
+
+- Use the AI plan as a checklist; keep only the steps you truly need.
+- Assign owners: one person drives Cursor, one observes/testing, others check docs or schema.
+- Capture new tasks or risks in the worksheet backlog so nothing is forgotten.
+
+**Checkpoint:** Plan fits on one screen, every step maps to a repo change or validation.
+
+---
+
+## 3. Pair with Cursor
+
+- For UI or schema updates, highlight relevant files before prompting to give Cursor context.
+- Keep prompts tight: what changed, what to create, expected output format.
+- Let Cursor write, then immediately scan the diff for misalignments. Reject and re-prompt quickly if it strays.
+
+**When Cursor guesses wrong**
+
+1. Explain the mismatch (“We need Supabase Row Level Security, not fake auth.”).
+2. Paste the correct snippet or docs link.
+3. Re-run with the clarified constraint.
+
+---
+
+## 4. Test & Iterate
+
+- After each meaningful change, run the smallest verification possible:
+  - `npm run dev` or `vercel dev` for frontend
+  - `supabase db diff` / `db push` for schema
+  - Unit or integration tests if available
+- Note any failing command, then jump to the matching section in [Troubleshooting & Logs](/troubleshooting).
+- Capture resolved issues in the lesson debrief so students build a troubleshooting habit.
+
+---
+
+## 5. Merge & Deploy
+
+- Once the story works locally, create a focused commit (`git commit -m "feat: add RSVP form validation"`).
+- Push and open a pull request; review line-by-line with the group.
+- Merge to `main` when approved. Let Vercel auto-deploy or run `vercel --prod`.
+- Celebrate the win, then queue the next objective.
+
+---
+
+## Sample Prompts Library
+
+**Generate Supabase migration**
+
+```text
+You are designing a PostgreSQL migration for Supabase.
+Task: add a `restaurant_preferences` table tied to `events`.
+Include indexes for lookups by `event_id`, set defaults, and enable RLS (policies later).
+Return only SQL.
+```
+
+**Cursor UI change**
+
+```text
+We added Supabase restaurant preferences. Update `components/RestaurantForm.tsx`
+to display existing preferences and add a toggle for `requires_accessibility`.
+Keep styling consistent with Tailwind classes already in the file.
+```
+
+Keep adding winning prompts here so each cohort benefits from the last.
+
+---
+
+## Timeboxing Tips
+
+- **15 minutes** — Plan + prep prompts.
+- **25 minutes** — Implement with Cursor.
+- **10 minutes** — Verify, document, push.
+- Adjust the timer but keep the rhythm; flow comes from short feedback loops.
+
+---
+
+Stay in the loop: plan with intention, prompt with clarity, verify relentlessly. Cursor becomes the accelerator, not the driver.

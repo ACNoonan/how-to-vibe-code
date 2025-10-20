@@ -9,6 +9,16 @@ A structured worksheet to help you move from idea to implementation with AI assi
 
 ---
 
+# Quick Flow
+
+1. Capture the persona, problem, and desired outcome.
+2. Map the 5–8 step user journey.
+3. List the data entities pulled from that journey.
+4. Use the prompts below (Cursor-ready) to generate schema, API, and UI.
+5. Log findings, blockers, and next steps for the retrospective.
+
+---
+
 # PLANNING
 
 ## Step 1: Problem & Persona
@@ -20,10 +30,17 @@ Be specific about the person, not just "users"
 **Your Answer:**
 
 ```text
-[Example: "Busy real estate investors who review 50+ properties per week"]
-
-
+(Describe the specific person here)
 ```
+
+<details>
+<summary>Example</summary>
+
+```text
+Busy real estate investors who review 50+ properties per week
+```
+
+</details>
 
 ### WHAT'S THE PROBLEM?
 
@@ -32,10 +49,17 @@ One sentence. What pain are they experiencing?
 **Your Answer:**
 
 ```text
-[Example: "They waste hours reviewing listings that don't meet their criteria"]
-
-
+(Sum up the pain in one sentence)
 ```
+
+<details>
+<summary>Example</summary>
+
+```text
+They waste hours reviewing listings that don't meet their criteria
+```
+
+</details>
 
 ### WHAT'S THE DESIRED OUTCOME?
 
@@ -44,10 +68,17 @@ What does success look like for them?
 **Your Answer:**
 
 ```text
-[Example: "Quickly identify the 3-5 properties worth scheduling a viewing"]
-
-
+(Describe the successful outcome)
 ```
+
+<details>
+<summary>Example</summary>
+
+```text
+Quickly identify the 3-5 properties worth scheduling a viewing
+```
+
+</details>
 
 ---
 
@@ -61,24 +92,17 @@ Write 5-8 steps describing exactly what happens. Focus on the WHAT, not the HOW.
 
 ```text
 1.
-
 2.
-
 3.
-
 4.
-
 5.
-
 6.
-
 7.
-
 8.
-
 ```
 
-**Example Journey (Team Lunch Coordinator):**
+<details>
+<summary>Example journey (Team Lunch Coordinator)</summary>
 
 ```text
 1. Person creates an event: "Friday Team Lunch"
@@ -89,6 +113,8 @@ Write 5-8 steps describing exactly what happens. Focus on the WHAT, not the HOW.
 6. Organizer picks one and clicks "Finalize"
 7. Everyone gets notification with restaurant details and time
 ```
+
+</details>
 
 ---
 
@@ -105,26 +131,17 @@ For each entity, list: **Entity Name | Key Attributes | Relationships**
 ```text
 ENTITY:
 Attributes:
-Why needed: (reference journey step #)
+Why needed: (journey step #)
 Relationships:
 
 ENTITY:
 Attributes:
-Why needed: (reference journey step #)
-Relationships:
-
-ENTITY:
-Attributes:
-Why needed: (reference journey step #)
-Relationships:
-
-ENTITY:
-Attributes:
-Why needed: (reference journey step #)
+Why needed: (journey step #)
 Relationships:
 ```
 
-**Example (Team Lunch Coordinator):**
+<details>
+<summary>Example (Team Lunch Coordinator)</summary>
 
 ```text
 ENTITY: events
@@ -154,6 +171,8 @@ menu_url (nullable), suggested_at, created_at
 Why needed: Store AI-generated restaurant options (step 5)
 Relationships: Belongs to event
 ```
+
+</details>
 
 ---
 
@@ -439,4 +458,3 @@ Once your MVP is working, consider:
 5. 🎉 Intrinsically Rewarding (celebrate small wins!)
 
 Good luck on your build! 🚀
-

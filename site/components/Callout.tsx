@@ -34,3 +34,4 @@ const Callout: React.FC<CalloutProps> = ({ children, type = 'info', icon }) => {
 
 export default Callout;
 
+
