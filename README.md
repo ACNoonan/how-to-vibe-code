@@ -18,10 +18,10 @@ This repository powers the public course materials that guide students from zero
 
 1. **[Introduction](./site/pages/introduction.mdx)** — Mindset and workflow overview  
 2. **[Dev Environment Setup](./site/pages/dev-environment-setup.mdx)** — Accounts & installs  
-3. **[CLI Services](./site/pages/cli-services.mdx)** — Daily Git, Supabase, and Vercel routines  
+3. **[CLI Services](./site/pages/advanced/cli-services.mdx)** — Daily Git, Supabase, and Vercel routines  
 4. **[Planning & Development Worksheet](./site/pages/planning-worksheet.mdx)** — AI-ready planning templates  
 5. **[Build with AI Flow](./site/pages/build-with-ai-flow.mdx)** — Cursor-first teaching script  
-6. **[Self-Hosting 101](./site/pages/self-hosting-101.mdx)** — Advanced deployment to AWS EC2  
+6. **[Self-Hosting 101](./site/pages/advanced/self-hosting-101.mdx)** — Advanced deployment to AWS EC2  
 7. **[Troubleshooting & Logs](./site/pages/troubleshooting.mdx)** — Fast checks when something breaks
 
 > The course ships as a static Next.js/Nextra site. Each module is a markdown/MDX page you can edit via pull request.

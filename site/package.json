@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"next dev\"",
     "dev:tina": "tinacms dev -c \"next dev\"",
-    "build": "next build",
+    "build": "tinacms build && next build",
     "build:tina": "tinacms build && next build",
     "start": "next start"
   },
