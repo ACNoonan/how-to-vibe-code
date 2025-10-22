@@ -28,7 +28,7 @@ export default defineConfig({
         path: "pages",
         format: "mdx",
         match: {
-          include: ["**/*.mdx"],
+          include: "**/*.mdx",
           exclude: ["api/**", "**/_*.{js,jsx,ts,tsx,json}"],
         },
         fields: [
