@@ -10,6 +10,12 @@ export default defineConfig({
   branch,
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
   token: process.env.TINA_TOKEN,
+  
+  // For local development
+  contentApiUrlOverride: process.env.TINA_PUBLIC_IS_LOCAL === "true" 
+    ? "http://localhost:4001/graphql" 
+    : undefined,
+  
   build: {
     outputFolder: "admin",
     publicFolder: "public",

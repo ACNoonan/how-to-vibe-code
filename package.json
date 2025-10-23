@@ -1,0 +1,22 @@
+{
+  "name": "vibe-coding-course",
+  "version": "1.0.0",
+  "description": "> Flow-state development with AI: a public curriculum for shipping real products with Cursor, Supabase, GitHub, and Vercel.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"next dev\"",
+    "build": "tinacms build && next build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ACNoonan/vibe-coding-course.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ACNoonan/vibe-coding-course/issues"
+  },
+  "homepage": "https://github.com/ACNoonan/vibe-coding-course#readme"
+}
