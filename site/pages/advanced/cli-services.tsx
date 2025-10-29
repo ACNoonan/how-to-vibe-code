@@ -3,7 +3,7 @@ import { client } from '../../tina/__generated__/client'
 import { TinaMarkdown } from '../../components/TinaMarkdown'
 import Head from 'next/head'
 
-export default function CLIServicesPage(props) {
+export default function CLIServicesPage(props: any) {
   const { data } = useTina({
     query: props.query,
     variables: props.variables,

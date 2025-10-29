@@ -3,7 +3,7 @@ import { client } from '../../tina/__generated__/client'
 import { TinaMarkdown } from '../../components/TinaMarkdown'
 import Head from 'next/head'
 
-export default function SelfHosting101Page(props) {
+export default function SelfHosting101Page(props: any) {
   const { data } = useTina({
     query: props.query,
     variables: props.variables,

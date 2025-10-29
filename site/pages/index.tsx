@@ -3,7 +3,7 @@ import { client } from '../tina/__generated__/client'
 import { TinaMarkdown } from '../components/TinaMarkdown'
 import Head from 'next/head'
 
-export default function HomePage(props) {
+export default function HomePage(props: any) {
   // Pass our data through the "useTina" hook to make it editable
   const { data } = useTina({
     query: props.query,
