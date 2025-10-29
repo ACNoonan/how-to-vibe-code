@@ -31,12 +31,8 @@ export default defineConfig({
       {
         name: "page",
         label: "Course Pages",
-        path: "pages",
+        path: "content",
         format: "mdx",
-        match: {
-          include: "**/*.mdx",
-          exclude: ["api/**", "**/_*.{js,jsx,ts,tsx,json}"],
-        },
         fields: [
           {
             type: "string",

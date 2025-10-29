@@ -1,14 +1,3 @@
-import nextra from 'nextra'
-
-const withNextra = nextra({
-  theme: 'nextra-theme-docs',
-  themeConfig: './theme.config.js',
-  latex: true,
-  search: {
-    codeblocks: false
-  }
-})
-
 const isProduction = process.env.NODE_ENV === 'production'
 
 /** @type {import('next').NextConfig} */
@@ -33,4 +22,4 @@ const nextConfig = {
   },
 }
 
-export default withNextra(nextConfig)
+export default nextConfig
