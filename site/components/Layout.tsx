@@ -7,10 +7,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <Link href="/" className="font-bold text-xl">
-              Building with AI Course
+              How to Vibe Code
             </Link>
             <a 
-              href="https://github.com/ACNoonan/vibe-coding-course"
+              href="https://github.com/ACNoonan/how-to-vibe-code"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-300 hover:text-white"
@@ -96,7 +96,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <footer className="bg-gray-50 border-t border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <p className="text-sm text-gray-600">
-            © {new Date().getFullYear()} Building with AI Course
+            © {new Date().getFullYear()} How to Vibe Code
           </p>
         </div>
       </footer>

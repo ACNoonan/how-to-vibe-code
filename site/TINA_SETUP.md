@@ -9,7 +9,7 @@
 
 ## Step 2: Connect Your Repository
 
-1. In Tina Cloud dashboard, select your GitHub repository: `ACNoonan/vibe-coding-course`
+1. In Tina Cloud dashboard, select your GitHub repository: `ACNoonan/how-to-vibe-code`
 2. Set the root directory to: `/site`
 3. Click "Continue"
 

@@ -8,8 +8,8 @@ const nextConfig = {
   // GitHub Pages configuration (only for production)
   ...(isProduction && {
     output: 'export',
-    basePath: '/vibe-coding-course',
-    assetPrefix: '/vibe-coding-course/',
+    basePath: '/how-to-vibe-code',
+    assetPrefix: '/how-to-vibe-code/',
   }),
   // Redirects only work in development (not with static export)
   ...(!isProduction && {

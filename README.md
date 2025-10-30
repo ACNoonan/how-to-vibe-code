@@ -1,8 +1,8 @@
-# Vibe Coding Course · From Idea to App
+# How to Vibe Code · From Idea to App
 
 > Flow-state development with AI: a public curriculum for shipping real products with Cursor, Supabase, GitHub, and Vercel.
 
-[![Site](https://img.shields.io/badge/site-live-blue?style=flat-square)](https://ACNoonan.github.io/vibe-coding-course)
+[![Site](https://img.shields.io/badge/site-live-blue?style=flat-square)](https://ACNoonan.github.io/how-to-vibe-code)
 [![License](https://img.shields.io/badge/license-MIT-lightgray?style=flat-square)](./LICENSE)
 [![Contributions](https://img.shields.io/badge/contributions-welcome-brightgreen?style=flat-square)](./CONTRIBUTING.md)
 
@@ -10,7 +10,7 @@ This repository powers the public course materials that guide students from zero
 
 ## 🌐 Live Course
 
-- **Site:** [ACNoonan.github.io/vibe-coding-course](https://ACNoonan.github.io/vibe-coding-course)
+- **Site:** [ACNoonan.github.io/how-to-vibe-code](https://ACNoonan.github.io/how-to-vibe-code)
 - **Focus:** Teaching an end-to-end AI development loop (plan → prompt → build → deploy)
 - **Audience:** Developers, product folks, and entrepreneurs who want to build faster with AI copilots
 
@@ -37,8 +37,8 @@ This repository powers the public course materials that guide students from zero
 ## 🚀 Local Development
 
 ```bash
-git clone https://github.com/ACNoonan/vibe-coding-course.git
-cd vibe-coding-course/site
+git clone https://github.com/ACNoonan/how-to-vibe-code.git
+cd how-to-vibe-code/site
 pnpm install
 pnpm run dev
 # visit http://localhost:3000
@@ -58,14 +58,14 @@ Before you start:
 
 1. Read the [Contributing guidelines](./CONTRIBUTING.md)  
 2. Review the [Code of Conduct](./CODE_OF_CONDUCT.md)  
-3. Open a [discussion or issue](https://github.com/ACNoonan/vibe-coding-course/issues/new/choose) if you want to float an idea first
+3. Open a [discussion or issue](https://github.com/ACNoonan/how-to-vibe-code/issues/new/choose) if you want to float an idea first
 
 Pull requests from first-time contributors are welcome—maintainers will help you land the change.
 
 ## 🧭 Repository Layout
 
 ```
-vibe-coding-course/
+how-to-vibe-code/
 ├── README.md                # You are here
 ├── CONTRIBUTING.md          # How to contribute
 ├── CODE_OF_CONDUCT.md       # Community standards
@@ -86,7 +86,7 @@ vibe-coding-course/
 - [ ] Publish a gallery of student-built MVPs  
 - [ ] Localize core modules (community help encouraged!)
 
-Track or suggest new ideas in [GitHub issues](https://github.com/ACNoonan/vibe-coding-course/issues).
+Track or suggest new ideas in [GitHub issues](https://github.com/ACNoonan/how-to-vibe-code/issues).
 
 ## 🙋‍♀️ Maintainer
 

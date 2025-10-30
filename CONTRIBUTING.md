@@ -1,6 +1,6 @@
-# Contributing to Vibe Coding Course
+# Contributing to How to Vibe Code
 
-Thank you for your interest in improving the Vibe Coding Course! This guide explains how you can contribute.
+Thank you for your interest in improving How to Vibe Code! This guide explains how you can contribute.
 
 > 🧭 **Start here:** Please review the [Code of Conduct](./CODE_OF_CONDUCT.md) before contributing and use the issue templates when filing bugs or improvement ideas. We welcome first-time contributors!
 
@@ -18,7 +18,7 @@ Thank you for your interest in improving the Vibe Coding Course! This guide expl
 ### Option 2: Direct GitHub Contribution
 
 1. Fork the repository
-2. Clone your fork: `git clone https://github.com/YOUR_USERNAME/vibe-coding-course.git`
+2. Clone your fork: `git clone https://github.com/YOUR_USERNAME/how-to-vibe-code.git`
 3. Create a branch: `git checkout -b improve-content`
 4. Make your changes in the `/site/pages/` directory
 5. Commit: `git commit -m "Improve CLI services section"`
@@ -30,8 +30,8 @@ Thank you for your interest in improving the Vibe Coding Course! This guide expl
 Want to run the course site locally?
 
 ```bash
-git clone https://github.com/ACNoonan/vibe-coding-course.git
-cd vibe-coding-course/site
+git clone https://github.com/ACNoonan/how-to-vibe-code.git
+cd how-to-vibe-code/site
 pnpm install
 pnpm run dev
 ```

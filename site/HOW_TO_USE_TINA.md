@@ -11,7 +11,7 @@ We removed the old config and rebuilt the schema. Everything should work now!
 ## 🚀 Quick Start
 
 ```bash
-cd /Users/adamnoonan/Documents/vibe-coding-course/site
+cd /Users/adamnoonan/Documents/how-to-vibe-code/site
 pnpm run dev
 ```
 
@@ -21,7 +21,7 @@ Then open: **http://localhost:3000/admin**
 
 ### Step 1: Access the Admin Panel
 - Local: `http://localhost:3000/admin`
-- Production: `https://acnoonan.github.io/vibe-coding-course/admin`
+- Production: `https://acnoonan.github.io/how-to-vibe-code/admin`
 
 ### Step 2: Navigate to Your Content
 1. You'll see "Course Pages" collection in the sidebar

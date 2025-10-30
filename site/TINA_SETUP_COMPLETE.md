@@ -26,7 +26,7 @@ You had **two conflicting TinaCMS configurations** that prevented the editor fro
 
 ### Start the Development Server
 ```bash
-cd /Users/adamnoonan/Documents/vibe-coding-course/site
+cd /Users/adamnoonan/Documents/how-to-vibe-code/site
 pnpm run dev
 ```
 
@@ -147,7 +147,7 @@ TINA_PUBLIC_IS_LOCAL=true
 
 When you deploy to GitHub Pages:
 
-1. **Admin Access**: `https://acnoonan.github.io/vibe-coding-course/admin`
+1. **Admin Access**: `https://acnoonan.github.io/how-to-vibe-code/admin`
 2. **Authentication**: Users sign in with GitHub via TinaCloud
 3. **Editing**: All edits create commits/PRs (based on repository permissions)
 
@@ -164,7 +164,7 @@ Run these commands to verify everything works:
 
 ```bash
 # 1. Start dev server
-cd /Users/adamnoonan/Documents/vibe-coding-course/site
+cd /Users/adamnoonan/Documents/how-to-vibe-code/site
 pnpm run dev
 
 # 2. In your browser, open:
@@ -188,7 +188,7 @@ pnpm run dev
 - **TinaCMS Documentation**: https://tina.io/docs/
 - **Your TinaCloud Dashboard**: https://app.tina.io/
 - **Nextra Documentation**: https://nextra.site/
-- **Your Site**: https://acnoonan.github.io/vibe-coding-course/
+- **Your Site**: https://acnoonan.github.io/how-to-vibe-code/
 
 ---
 

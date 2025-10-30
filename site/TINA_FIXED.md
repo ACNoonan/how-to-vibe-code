@@ -20,7 +20,7 @@ This caused TinaCMS to not recognize your content files.
 ### Local Development
 
 ```bash
-cd /Users/adamnoonan/Documents/vibe-coding-course/site
+cd /Users/adamnoonan/Documents/how-to-vibe-code/site
 pnpm run dev
 ```
 
@@ -64,7 +64,7 @@ However, the **Admin Interface** works perfectly and gives you:
 ### For Production (GitHub Pages)
 
 When deployed, editors can:
-1. Visit `https://your-site.github.io/vibe-coding-course/admin`
+1. Visit `https://your-site.github.io/how-to-vibe-code/admin`
 2. Sign in with GitHub (via TinaCloud)
 3. Edit content
 4. Changes create PRs or direct commits (based on permissions)

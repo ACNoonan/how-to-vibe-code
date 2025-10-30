@@ -3,8 +3,8 @@
 # Create a repo, add workflow to sync Notion -> Markdown, set NOTION_TOKEN secret, push and trigger the workflow.
 set -euo pipefail
 
-REPO_NAME="${1:-vibe-coding-course}"
-REPO_DESC="Vibe Coding course content (Notion → Markdown exported)"
+REPO_NAME="${1:-how-to-vibe-code}"
+REPO_DESC="How to Vibe Code course content (Notion → Markdown exported)"
 MAIN_BRANCH="${MAIN_BRANCH:-main}"
 WORKFLOW_FILENAME=".github/workflows/notion-sync.yml"
 
@@ -19,7 +19,7 @@ done
 # 2) create minimal repo files
 mkdir -p .github/workflows
 cat > README.md <<'MD'
-# Vibe Coding Course — Notion ↔ GitHub export
+# How to Vibe Code — Notion ↔ GitHub export
 
 This repo stores Markdown exports of the Notion course pages.
 The repository is automatically updated by a GitHub Actions workflow that exports pages accessible to a Notion integration.
