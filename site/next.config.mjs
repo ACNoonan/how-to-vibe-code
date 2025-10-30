@@ -11,6 +11,18 @@ const nextConfig = {
     basePath: '/vibe-coding-course',
     assetPrefix: '/vibe-coding-course/',
   }),
+  // Redirects only work in development (not with static export)
+  ...(!isProduction && {
+    async redirects() {
+      return [
+        {
+          source: '/admin',
+          destination: '/admin/index.html',
+          permanent: false,
+        },
+      ]
+    },
+  }),
 }
 
 export default nextConfig
