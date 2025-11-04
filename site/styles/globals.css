@@ -28,15 +28,15 @@
 }
 
 .prose ul {
-  @apply list-disc list-inside mb-4 space-y-2;
+  @apply list-disc list-outside mb-4 space-y-2 ml-6;
 }
 
 .prose ol {
-  @apply list-decimal list-inside mb-4 space-y-2;
+  @apply list-decimal list-outside mb-4 space-y-2 ml-6;
 }
 
 .prose li {
-  @apply ml-4;
+  @apply pl-2;
 }
 
 .prose code {
